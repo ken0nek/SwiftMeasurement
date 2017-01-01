@@ -31,6 +31,20 @@ class SwiftMeasurementTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         //// XCTAssertEqual(SwiftMeasurement().text, "Hello, World!")
+
+        let a: Double = 3
+        let b: Double = 4
+        let c: Double = 7
+
+        if #available(iOS 10.0, *) {
+            XCTAssertEqual(a.kilometers, Measurement<UnitLength>(value: a, unit: .kilometers))
+            XCTAssertEqual(b.seconds, Measurement<UnitDuration>(value: b, unit: .seconds))
+
+            XCTAssertEqual(c.grams, a.grams + b.grams)
+            XCTAssertEqual(a.acres, c.acres - b.acres)
+            XCTAssertEqual(c.metersPerSecond / 7, Measurement(value: 1, unit: .metersPerSecond))
+            XCTAssertEqual(c.liters * 8, Measurement(value: 56, unit: .liters))
+        }
     }
 }
 
