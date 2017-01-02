@@ -90,7 +90,7 @@ $ brew install carthage
 To integrate SwiftMeasurement into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "malcommac/SwiftMeasurement"
+github "ken0nek/SwiftMeasurement"
 ```
 
 Run `carthage` to build the framework and drag the built `SwiftMeasurement.framework` into your Xcode project.
