@@ -94,3 +94,23 @@ github "ken0nek/SwiftMeasurement"
 ```
 
 Run `carthage` to build the framework and drag the built `SwiftMeasurement.framework` into your Xcode project.
+
+## Future features
+- [ ] Describe relations between dimentions. [L, M, T, L/T, L/T^2, etc...]
+
+```swift
+
+// Speed * Duration -> Length
+
+func * (lhs: Measurement<UnitSpeed>, rhs: Measurement<UnitDuration>) -> Measurement<UnitLength> {
+    let v = lhs.converted(to: .baseUnit()).value * rhs.converted(to: .baseUnit()).value
+        return Measurement<UnitLength>(value: v, unit: .baseUnit())
+
+}
+
+let duration = 10.hours // 10.0 hr
+let speed = 5.kilometersPerHour // 5.0 km/h
+
+(speed * duration).converted(to: .kilometers) // 50.00004 km
+```
+
