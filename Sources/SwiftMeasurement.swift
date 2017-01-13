@@ -24,7 +24,7 @@
 
 import Foundation
 
-// - UnitAngle
+// - UnitAngle: []
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -54,7 +54,7 @@ public extension Double {
 
 }
 
-// - UnitPressure
+// - UnitPressure: [M/LT^2]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -100,7 +100,7 @@ public extension Double {
 
 }
 
-// - UnitDispersion
+// - UnitDispersion: []
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -110,7 +110,7 @@ public extension Double {
 
 }
 
-// - UnitElectricPotentialDifference
+// - UnitElectricPotentialDifference: [L^2M/T^3I]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -136,7 +136,7 @@ public extension Double {
 
 }
 
-// - UnitDuration
+// - UnitDuration: [T]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -154,7 +154,7 @@ public extension Double {
 
 }
 
-// - UnitPower
+// - UnitPower: [ML^2/T^3]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -204,7 +204,7 @@ public extension Double {
 
 }
 
-// - UnitElectricCharge
+// - UnitElectricCharge: [IT]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -234,7 +234,7 @@ public extension Double {
 
 }
 
-// - UnitAcceleration
+// - UnitAcceleration: [L/T^2]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -248,7 +248,7 @@ public extension Double {
 
 }
 
-// - UnitTemperature
+// - UnitTemperature: [Θ]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -266,7 +266,7 @@ public extension Double {
 
 }
 
-// - UnitIlluminance
+// - UnitIlluminance: [J/L^2]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -276,7 +276,7 @@ public extension Double {
 
 }
 
-// - UnitFrequency
+// - UnitFrequency: [/T]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -314,7 +314,7 @@ public extension Double {
 
 }
 
-// - UnitArea
+// - UnitArea: [L^2]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -376,7 +376,7 @@ public extension Double {
 
 }
 
-// - UnitLength
+// - UnitLength: [L]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -470,7 +470,7 @@ public extension Double {
 
 }
 
-// - UnitElectricCurrent
+// - UnitElectricCurrent: [I]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -514,7 +514,7 @@ public extension Double {
 
 }
 
-// - UnitConcentrationMass
+// - UnitConcentrationMass: [M/L^3]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -528,7 +528,7 @@ public extension Double {
 
 }
 
-// - UnitVolume
+// - UnitVolume: [L^3]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -658,7 +658,7 @@ public extension Double {
 
 }
 
-// - UnitSpeed
+// - UnitSpeed: [L/T]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -680,7 +680,7 @@ public extension Double {
 
 }
 
-// - UnitElectricResistance
+// - UnitElectricResistance: [L^2M/T^3I^2]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -706,7 +706,7 @@ public extension Double {
 
 }
 
-// - UnitMass
+// - UnitMass: [M]
 @available(iOS 10.0, *)
 public extension Double {
 
@@ -776,7 +776,7 @@ public extension Double {
     
 }
 
-// - UnitEnergy
+// - UnitEnergy: [ML^2/T^2]
 @available(iOS 10.0, *)
 public extension Double {
     
