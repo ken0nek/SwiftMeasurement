@@ -36,15 +36,13 @@ class SwiftMeasurementTests: XCTestCase {
         let b: Double = 4
         let c: Double = 7
 
-        if #available(iOS 10.0, *) {
-            XCTAssertEqual(a.kilometers, Measurement<UnitLength>(value: a, unit: .kilometers))
-            XCTAssertEqual(b.seconds, Measurement<UnitDuration>(value: b, unit: .seconds))
+        XCTAssertEqual(a.kilometers, Measurement<UnitLength>(value: a, unit: .kilometers))
+        XCTAssertEqual(b.seconds, Measurement<UnitDuration>(value: b, unit: .seconds))
 
-            XCTAssertEqual(c.grams, a.grams + b.grams)
-            XCTAssertEqual(a.acres, c.acres - b.acres)
-            XCTAssertEqual(c.metersPerSecond / 7, Measurement(value: 1, unit: UnitSpeed.metersPerSecond))
-            XCTAssertEqual(c.liters * 8, Measurement(value: 56, unit: UnitVolume.liters))
-        }
+        XCTAssertEqual(c.grams, a.grams + b.grams)
+        XCTAssertEqual(a.acres, c.acres - b.acres)
+        XCTAssertEqual(c.metersPerSecond / 7, Measurement(value: 1, unit: UnitSpeed.metersPerSecond))
+        XCTAssertEqual(c.liters * 8, Measurement(value: 56, unit: UnitVolume.liters))
     }
 }
 

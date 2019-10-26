@@ -25,7 +25,6 @@
 import Foundation
 
 // - UnitAngle: []
-@available(iOS 10.0, *)
 public extension Double {
 
     var degrees: Measurement<UnitAngle> {
@@ -55,7 +54,6 @@ public extension Double {
 }
 
 // - UnitPressure: [M/LT^2]
-@available(iOS 10.0, *)
 public extension Double {
 
     var newtonsPerMetersSquared: Measurement<UnitPressure> {
@@ -101,7 +99,6 @@ public extension Double {
 }
 
 // - UnitDispersion: []
-@available(iOS 10.0, *)
 public extension Double {
 
     var partsPerMillion: Measurement<UnitDispersion> {
@@ -111,7 +108,6 @@ public extension Double {
 }
 
 // - UnitElectricPotentialDifference: [L^2M/T^3I]
-@available(iOS 10.0, *)
 public extension Double {
 
     var megavolts: Measurement<UnitElectricPotentialDifference> {
@@ -137,7 +133,6 @@ public extension Double {
 }
 
 // - UnitDuration: [T]
-@available(iOS 10.0, *)
 public extension Double {
 
     var seconds: Measurement<UnitDuration> {
@@ -175,7 +170,6 @@ public extension Double {
 }
 
 // - UnitPower: [ML^2/T^3]
-@available(iOS 10.0, *)
 public extension Double {
 
     var terawatts: Measurement<UnitPower> {
@@ -225,7 +219,6 @@ public extension Double {
 }
 
 // - UnitElectricCharge: [IT]
-@available(iOS 10.0, *)
 public extension Double {
 
     var coulombs: Measurement<UnitElectricCharge> {
@@ -255,7 +248,6 @@ public extension Double {
 }
 
 // - UnitAcceleration: [L/T^2]
-@available(iOS 10.0, *)
 public extension Double {
 
     var metersPerSecondSquared: Measurement<UnitAcceleration> {
@@ -269,7 +261,6 @@ public extension Double {
 }
 
 // - UnitTemperature: [Θ]
-@available(iOS 10.0, *)
 public extension Double {
 
     var kelvin: Measurement<UnitTemperature> {
@@ -287,7 +278,6 @@ public extension Double {
 }
 
 // - UnitIlluminance: [J/L^2]
-@available(iOS 10.0, *)
 public extension Double {
 
     var lux: Measurement<UnitIlluminance> {
@@ -297,7 +287,6 @@ public extension Double {
 }
 
 // - UnitFrequency: [/T]
-@available(iOS 10.0, *)
 public extension Double {
 
     var terahertz: Measurement<UnitFrequency> {
@@ -340,7 +329,6 @@ public extension Double {
 }
 
 // - UnitArea: [L^2]
-@available(iOS 10.0, *)
 public extension Double {
 
     var squareMegameters: Measurement<UnitArea> {
@@ -402,7 +390,6 @@ public extension Double {
 }
 
 // - UnitLength: [L]
-@available(iOS 10.0, *)
 public extension Double {
 
     var megameters: Measurement<UnitLength> {
@@ -496,7 +483,6 @@ public extension Double {
 }
 
 // - UnitElectricCurrent: [I]
-@available(iOS 10.0, *)
 public extension Double {
 
     var megaamperes: Measurement<UnitElectricCurrent> {
@@ -522,7 +508,6 @@ public extension Double {
 }
 
 // - UnitFuelEfficiency
-@available(iOS 10.0, *)
 public extension Double {
 
     var litersPer100Kilometers: Measurement<UnitFuelEfficiency> {
@@ -540,7 +525,6 @@ public extension Double {
 }
 
 // - UnitConcentrationMass: [M/L^3]
-@available(iOS 10.0, *)
 public extension Double {
 
     var gramsPerLiter: Measurement<UnitConcentrationMass> {
@@ -554,7 +538,7 @@ public extension Double {
 }
 
 // - UnitVolume: [L^3]
-@available(iOS 10.0, *)
+
 public extension Double {
 
     var megaliters: Measurement<UnitVolume> {
@@ -684,7 +668,6 @@ public extension Double {
 }
 
 // - UnitSpeed: [L/T]
-@available(iOS 10.0, *)
 public extension Double {
 
     var metersPerSecond: Measurement<UnitSpeed> {
@@ -706,7 +689,6 @@ public extension Double {
 }
 
 // - UnitElectricResistance: [L^2M/T^3I^2]
-@available(iOS 10.0, *)
 public extension Double {
 
     var megaohms: Measurement<UnitElectricResistance> {
@@ -732,7 +714,6 @@ public extension Double {
 }
 
 // - UnitMass: [M]
-@available(iOS 10.0, *)
 public extension Double {
 
     var kilograms: Measurement<UnitMass> {
@@ -802,7 +783,6 @@ public extension Double {
 }
 
 // - UnitEnergy: [ML^2/T^2]
-@available(iOS 10.0, *)
 public extension Double {
     
     var kilojoules: Measurement<UnitEnergy> {
