@@ -42,8 +42,8 @@ class SwiftMeasurementTests: XCTestCase {
 
             XCTAssertEqual(c.grams, a.grams + b.grams)
             XCTAssertEqual(a.acres, c.acres - b.acres)
-            XCTAssertEqual(c.metersPerSecond / 7, Measurement(value: 1, unit: .metersPerSecond))
-            XCTAssertEqual(c.liters * 8, Measurement(value: 56, unit: .liters))
+            XCTAssertEqual(c.metersPerSecond / 7, Measurement(value: 1, unit: UnitSpeed.metersPerSecond))
+            XCTAssertEqual(c.liters * 8, Measurement(value: 56, unit: UnitVolume.liters))
         }
     }
 }
