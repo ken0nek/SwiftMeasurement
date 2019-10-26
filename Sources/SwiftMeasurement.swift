@@ -826,3 +826,149 @@ public extension Double {
     }
     
 }
+
+// - UnitInformationStorage: []
+@available(iOS 13.0, *)
+public extension Double {
+
+    var bytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .bytes)
+    }
+
+    var bits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .bits)
+    }
+
+    var nibbles: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .nibbles)
+    }
+
+    var yottabytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .yottabytes)
+    }
+
+    var zettabytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .zettabytes)
+    }
+
+    var exabytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .exabytes)
+    }
+
+    var petabytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .petabytes)
+    }
+
+    var terabytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .terabytes)
+    }
+
+    var gigabytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .gigabytes)
+    }
+
+    var megabytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .megabytes)
+    }
+
+    var kilobytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .kilobytes)
+    }
+
+    var yottabits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .yottabits)
+    }
+
+    var zettabits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .zettabits)
+    }
+
+    var exabits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .exabits)
+    }
+
+    var petabits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .petabits)
+    }
+
+    var terabits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .terabits)
+    }
+
+    var gigabits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .gigabits)
+    }
+
+    var megabits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .megabits)
+    }
+
+    var kilobits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .kilobits)
+    }
+
+    var yobibytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .yobibytes)
+    }
+
+    var zebibytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .zebibytes)
+    }
+
+    var exbibytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .exbibytes)
+    }
+
+    var pebibytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .pebibytes)
+    }
+
+    var tebibytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .tebibytes)
+    }
+
+    var gibibytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .gibibytes)
+    }
+
+    var mebibytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .mebibytes)
+    }
+
+    var kibibytes: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .kibibytes)
+    }
+
+    var yobibits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .yobibits)
+    }
+
+    var zebibits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .zebibits)
+    }
+
+    var exbibits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .exbibits)
+    }
+
+    var pebibits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .pebibits)
+    }
+
+    var tebibits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .tebibits)
+    }
+
+    var gibibits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .gibibits)
+    }
+
+    var mebibits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .mebibits)
+    }
+
+    var kibibits: Measurement<UnitInformationStorage> {
+        return Measurement<UnitInformationStorage>(value: self, unit: .kibibits)
+    }
+
+}
