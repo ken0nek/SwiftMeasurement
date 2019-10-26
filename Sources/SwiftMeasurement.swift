@@ -152,6 +152,26 @@ public extension Double {
         return Measurement(value: self, unit: .hours)
     }
 
+    @available(iOS 13.0, *)
+    var milliseconds: Measurement<UnitDuration> {
+        return Measurement(value: self, unit: .milliseconds)
+    }
+
+    @available(iOS 13.0, *)
+    var microseconds: Measurement<UnitDuration> {
+        return Measurement(value: self, unit: .microseconds)
+    }
+
+    @available(iOS 13.0, *)
+    var nanoseconds: Measurement<UnitDuration> {
+        return Measurement(value: self, unit: .nanoseconds)
+    }
+
+    @available(iOS 13.0, *)
+    var picoseconds: Measurement<UnitDuration> {
+        return Measurement(value: self, unit: .nanoseconds)
+    }
+
 }
 
 // - UnitPower: [ML^2/T^3]
