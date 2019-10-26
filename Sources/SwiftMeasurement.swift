@@ -332,6 +332,11 @@ public extension Double {
         return Measurement(value: self, unit: .nanohertz)
     }
 
+    @available(iOS 13.0, *)
+    var framesPerSecond: Measurement<UnitFrequency> {
+        return Measurement(value: self, unit: .framesPerSecond)
+    }
+
 }
 
 // - UnitArea: [L^2]
