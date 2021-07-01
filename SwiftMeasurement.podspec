@@ -1,6 +1,6 @@
 Pod:: Spec.new do |s|
   s.name                  = "SwiftMeasurement"
-  s.version               = "0.2"
+  s.version               = "0.3"
   s.summary               = "The best way to deal with Measurements and Units in Swift"
   s.homepage              = "https://github.com/ken0nek/SwiftMeasurement"
   s.license               = { :type => "MIT", :file => "LICENSE" }
