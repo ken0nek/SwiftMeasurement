@@ -47,8 +47,9 @@ SwiftMeasurement supports all units declared in Foundation framework.
 
 Current version is compatible with:
 
-- Swift 3.0+
+- Swift 5.5+
 - iOS 10 or later
+- masOS 10.12 or later
 
 ## Installation
 
