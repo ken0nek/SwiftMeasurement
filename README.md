@@ -1,5 +1,9 @@
 # SwiftMeasurement
 
+![Version](https://img.shields.io/cocoapods/v/SwiftMeasurement)
+![License](https://img.shields.io/cocoapods/l/SwiftMeasurement)
+![Platforms](https://img.shields.io/cocoapods/p/SwiftMeasurement)
+
 The best way to deal with Measurements and Units in Swift.
 
 Measurements and Units are newly introduced in iOS 10.
