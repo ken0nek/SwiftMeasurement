@@ -12,6 +12,15 @@ let package = Package(
         .tvOS(.v10),
     ],
 
+    products: [
+        .library(
+            name: "SwiftMeasurement",
+            targets: [
+                "SwiftMeasurement",
+            ]
+        ),
+    ],
+
     targets: [
         .target(
             name: "SwiftMeasurement"
