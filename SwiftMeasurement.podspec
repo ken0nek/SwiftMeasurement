@@ -1,11 +1,13 @@
 Pod:: Spec.new do |s|
   s.name    = 'SwiftMeasurement'
-  s.version = '0.4.0'
+  s.version = '0.4.1'
 
   s.swift_version = '5.0'
 
   s.osx.deployment_target     = '10.12'
   s.ios.deployment_target     = '10.0'
+  s.watchos.deployment_target = '3.0'
+  s.tvos.deployment_target    = '10.0'
 
   s.license  = 'MIT'
   s.summary  = 'The best way to deal with Measurements and Units in Swift'
