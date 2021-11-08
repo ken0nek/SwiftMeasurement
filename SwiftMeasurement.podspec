@@ -1,6 +1,6 @@
 Pod:: Spec.new do |s|
   s.name    = 'SwiftMeasurement'
-  s.version = '0.4'
+  s.version = '0.4.0'
 
   s.swift_version = '5.0'
 
