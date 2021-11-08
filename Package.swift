@@ -6,8 +6,10 @@ let package = Package(
     name: "SwiftMeasurement",
 
     platforms: [
-        .iOS(.v10),
         .macOS(.v10_12),
+        .iOS(.v10),
+        .watchOS(.v3),
+        .tvOS(.v10),
     ],
 
     targets: [
