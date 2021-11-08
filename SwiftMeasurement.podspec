@@ -1,6 +1,6 @@
 Pod:: Spec.new do |s|
   s.name    = 'SwiftMeasurement'
-  s.version = '0.3'
+  s.version = '0.4'
 
   s.osx.deployment_target     = '10.12'
   s.ios.deployment_target     = '10.0'
