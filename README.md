@@ -1,9 +1,5 @@
 # SwiftMeasurement
 
-![Version](https://img.shields.io/cocoapods/v/SwiftMeasurement)
-![License](https://img.shields.io/cocoapods/l/SwiftMeasurement)
-![Platforms](https://img.shields.io/cocoapods/p/SwiftMeasurement)
-
 The best way to deal with Measurements and Units in Swift.
 
 Measurements and Units are newly introduced in iOS 10.
@@ -59,48 +55,7 @@ Current version is compatible with:
 
 ## Installation
 
-SwiftMeasurement supports multiple methods for installing the library in a project.
-
-## Installation with CocoaPods
-
-[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like SwiftMeasurement in your projects. You can install it with the following command:
-
-```bash
-$ gem install cocoapods
-```
-
-#### Podfile
-
-To integrate SwiftMeasurement into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
-```ruby
-pod 'SwiftMeasurement'
-```
-
-Then, run the following command:
-
-```bash
-$ pod install
-```
-
-### Installation with Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
-
-You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
-
-```bash
-$ brew update
-$ brew install carthage
-```
-
-To integrate SwiftMeasurement into your Xcode project using Carthage, specify it in your `Cartfile`:
-
-```ogdl
-github "ken0nek/SwiftMeasurement"
-```
-
-Run `carthage` to build the framework and drag the built `SwiftMeasurement.framework` into your Xcode project.
+TBU
 
 ## Future features
 - [ ] Describe relations between dimentions. [L, M, T, L/T, L/T^2, etc...]
