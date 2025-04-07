@@ -25,924 +25,903 @@
 import Foundation
 
 // MARK: - UnitAngle
-public extension Double {
+public extension MeasurementConvertible {
 
     var degrees: Measurement<UnitAngle> {
-        return Measurement(value: self, unit: .degrees)
+        return measurement(as: UnitAngle.degrees)
     }
 
     var arcMinutes: Measurement<UnitAngle> {
-        return Measurement(value: self, unit: .arcMinutes)
+        return measurement(as: UnitAngle.arcMinutes)
     }
 
     var arcSeconds: Measurement<UnitAngle> {
-        return Measurement(value: self, unit: .arcSeconds)
+        return measurement(as: UnitAngle.arcSeconds)
     }
 
     var radians: Measurement<UnitAngle> {
-        return Measurement(value: self, unit: .radians)
+        return measurement(as: UnitAngle.radians)
     }
 
     var gradians: Measurement<UnitAngle> {
-        return Measurement(value: self, unit: .gradians)
+        return measurement(as: UnitAngle.gradians)
     }
 
     var revolutions: Measurement<UnitAngle> {
-        return Measurement(value: self, unit: .revolutions)
+        return measurement(as: UnitAngle.revolutions)
     }
-
 }
 
 // MARK: - UnitPressure
-public extension Double {
+public extension MeasurementConvertible {
 
     var newtonsPerMetersSquared: Measurement<UnitPressure> {
-        return Measurement(value: self, unit: .newtonsPerMetersSquared)
+        return measurement(as: UnitPressure.newtonsPerMetersSquared)
     }
 
     var gigapascals: Measurement<UnitPressure> {
-        return Measurement(value: self, unit: .gigapascals)
+        return measurement(as: UnitPressure.gigapascals)
     }
 
     var megapascals: Measurement<UnitPressure> {
-        return Measurement(value: self, unit: .megapascals)
+        return measurement(as: UnitPressure.megapascals)
     }
 
     var kilopascals: Measurement<UnitPressure> {
-        return Measurement(value: self, unit: .kilopascals)
+        return measurement(as: UnitPressure.kilopascals)
     }
 
     var hectopascals: Measurement<UnitPressure> {
-        return Measurement(value: self, unit: .hectopascals)
+        return measurement(as: UnitPressure.hectopascals)
     }
 
     var inchesOfMercury: Measurement<UnitPressure> {
-        return Measurement(value: self, unit: .inchesOfMercury)
+        return measurement(as: UnitPressure.inchesOfMercury)
     }
 
     var bars: Measurement<UnitPressure> {
-        return Measurement(value: self, unit: .bars)
+        return measurement(as: UnitPressure.bars)
     }
 
     var millibars: Measurement<UnitPressure> {
-        return Measurement(value: self, unit: .millibars)
+        return measurement(as: UnitPressure.millibars)
     }
 
     var millimetersOfMercury: Measurement<UnitPressure> {
-        return Measurement(value: self, unit: .millimetersOfMercury)
+        return measurement(as: UnitPressure.millimetersOfMercury)
     }
 
     var poundsForcePerSquareInch: Measurement<UnitPressure> {
-        return Measurement(value: self, unit: .poundsForcePerSquareInch)
+        return measurement(as: UnitPressure.poundsForcePerSquareInch)
     }
-
 }
 
 // MARK: - UnitDispersion
-public extension Double {
+public extension MeasurementConvertible {
 
     var partsPerMillion: Measurement<UnitDispersion> {
-        return Measurement(value: self, unit: .partsPerMillion)
+        return measurement(as: UnitDispersion.partsPerMillion)
     }
-
 }
 
 // MARK: - UnitElectricPotentialDifference
-public extension Double {
+public extension MeasurementConvertible {
 
     var megavolts: Measurement<UnitElectricPotentialDifference> {
-        return Measurement(value: self, unit: .megavolts)
+        return measurement(as: UnitElectricPotentialDifference.megavolts)
     }
 
     var kilovolts: Measurement<UnitElectricPotentialDifference> {
-        return Measurement(value: self, unit: .kilovolts)
+        return measurement(as: UnitElectricPotentialDifference.kilovolts)
     }
 
     var volts: Measurement<UnitElectricPotentialDifference> {
-        return Measurement(value: self, unit: .volts)
+        return measurement(as: UnitElectricPotentialDifference.volts)
     }
 
     var millivolts: Measurement<UnitElectricPotentialDifference> {
-        return Measurement(value: self, unit: .millivolts)
+        return measurement(as: UnitElectricPotentialDifference.millivolts)
     }
 
     var microvolts: Measurement<UnitElectricPotentialDifference> {
-        return Measurement(value: self, unit: .microvolts)
+        return measurement(as: UnitElectricPotentialDifference.microvolts)
     }
-
 }
 
 // MARK: - UnitDuration
-public extension Double {
+public extension MeasurementConvertible {
 
     var seconds: Measurement<UnitDuration> {
-        return Measurement(value: self, unit: .seconds)
+        return measurement(as: UnitDuration.seconds)
     }
 
     var minutes: Measurement<UnitDuration> {
-        return Measurement(value: self, unit: .minutes)
+        return measurement(as: UnitDuration.minutes)
     }
 
     var hours: Measurement<UnitDuration> {
-        return Measurement(value: self, unit: .hours)
+        return measurement(as: UnitDuration.hours)
     }
 
     var milliseconds: Measurement<UnitDuration> {
-        return Measurement(value: self, unit: .milliseconds)
+        return measurement(as: UnitDuration.milliseconds)
     }
 
     var microseconds: Measurement<UnitDuration> {
-        return Measurement(value: self, unit: .microseconds)
+        return measurement(as: UnitDuration.microseconds)
     }
 
     var nanoseconds: Measurement<UnitDuration> {
-        return Measurement(value: self, unit: .nanoseconds)
+        return measurement(as: UnitDuration.nanoseconds)
     }
 
     var picoseconds: Measurement<UnitDuration> {
-        return Measurement(value: self, unit: .picoseconds)
+        return measurement(as: UnitDuration.picoseconds)
     }
 
 }
 
 // MARK: - UnitPower
-public extension Double {
+public extension MeasurementConvertible {
 
     var terawatts: Measurement<UnitPower> {
-        return Measurement(value: self, unit: .terawatts)
+        return measurement(as: UnitPower.terawatts)
     }
 
     var gigawatts: Measurement<UnitPower> {
-        return Measurement(value: self, unit: .gigawatts)
+        return measurement(as: UnitPower.gigawatts)
     }
 
     var megawatts: Measurement<UnitPower> {
-        return Measurement(value: self, unit: .megawatts)
+        return measurement(as: UnitPower.megawatts)
     }
 
     var kilowatts: Measurement<UnitPower> {
-        return Measurement(value: self, unit: .kilowatts)
+        return measurement(as: UnitPower.kilowatts)
     }
 
     var watts: Measurement<UnitPower> {
-        return Measurement(value: self, unit: .watts)
+        return measurement(as: UnitPower.watts)
     }
 
     var milliwatts: Measurement<UnitPower> {
-        return Measurement(value: self, unit: .milliwatts)
+        return measurement(as: UnitPower.milliwatts)
     }
 
     var microwatts: Measurement<UnitPower> {
-        return Measurement(value: self, unit: .microwatts)
+        return measurement(as: UnitPower.microwatts)
     }
 
     var nanowatts: Measurement<UnitPower> {
-        return Measurement(value: self, unit: .nanowatts)
+        return measurement(as: UnitPower.nanowatts)
     }
 
     var picowatts: Measurement<UnitPower> {
-        return Measurement(value: self, unit: .picowatts)
+        return measurement(as: UnitPower.picowatts)
     }
 
     var femtowatts: Measurement<UnitPower> {
-        return Measurement(value: self, unit: .femtowatts)
+        return measurement(as: UnitPower.femtowatts)
     }
 
     var horsepower: Measurement<UnitPower> {
-        return Measurement(value: self, unit: .horsepower)
+        return measurement(as: UnitPower.horsepower)
     }
-
 }
 
 // MARK: - UnitElectricCharge
-public extension Double {
+public extension MeasurementConvertible {
 
     var coulombs: Measurement<UnitElectricCharge> {
-        return Measurement(value: self, unit: .coulombs)
+        return measurement(as: UnitElectricCharge.coulombs)
     }
 
     var megaampereHours: Measurement<UnitElectricCharge> {
-        return Measurement(value: self, unit: .megaampereHours)
+        return measurement(as: UnitElectricCharge.megaampereHours)
     }
 
     var kiloampereHours: Measurement<UnitElectricCharge> {
-        return Measurement(value: self, unit: .kiloampereHours)
+        return measurement(as: UnitElectricCharge.kiloampereHours)
     }
 
     var ampereHours: Measurement<UnitElectricCharge> {
-        return Measurement(value: self, unit: .ampereHours)
+        return measurement(as: UnitElectricCharge.ampereHours)
     }
 
     var milliampereHours: Measurement<UnitElectricCharge> {
-        return Measurement(value: self, unit: .milliampereHours)
+        return measurement(as: UnitElectricCharge.milliampereHours)
     }
 
     var microampereHours: Measurement<UnitElectricCharge> {
-        return Measurement(value: self, unit: .microampereHours)
+        return measurement(as: UnitElectricCharge.microampereHours)
     }
-
 }
 
 // MARK: - UnitAcceleration
-public extension Double {
+public extension MeasurementConvertible {
 
     var metersPerSecondSquared: Measurement<UnitAcceleration> {
-        return Measurement(value: self, unit: .metersPerSecondSquared)
+        return measurement(as: UnitAcceleration.metersPerSecondSquared)
     }
 
     var gravity: Measurement<UnitAcceleration> {
-        return Measurement(value: self, unit: .gravity)
+        return measurement(as: UnitAcceleration.gravity)
     }
-
 }
 
 // MARK: - UnitTemperature
-public extension Double {
+public extension MeasurementConvertible {
 
     var kelvin: Measurement<UnitTemperature> {
-        return Measurement(value: self, unit: .kelvin)
+        return measurement(as: UnitTemperature.kelvin)
     }
 
     var celsius: Measurement<UnitTemperature> {
-        return Measurement(value: self, unit: .celsius)
+        return measurement(as: UnitTemperature.celsius)
     }
 
     var fahrenheit: Measurement<UnitTemperature> {
-        return Measurement(value: self, unit: .fahrenheit)
+        return measurement(as: UnitTemperature.fahrenheit)
     }
-
 }
 
 // MARK: - UnitIlluminance
-public extension Double {
+public extension MeasurementConvertible {
 
     var lux: Measurement<UnitIlluminance> {
-        return Measurement(value: self, unit: .lux)
+        return measurement(as: UnitIlluminance.lux)
     }
-
 }
 
 // MARK: - UnitFrequency
-public extension Double {
+public extension MeasurementConvertible {
 
     var terahertz: Measurement<UnitFrequency> {
-        return Measurement(value: self, unit: .terahertz)
+        return measurement(as: UnitFrequency.terahertz)
     }
 
     var gigahertz: Measurement<UnitFrequency> {
-        return Measurement(value: self, unit: .gigahertz)
+        return measurement(as: UnitFrequency.gigahertz)
     }
 
     var megahertz: Measurement<UnitFrequency> {
-        return Measurement(value: self, unit: .megahertz)
+        return measurement(as: UnitFrequency.megahertz)
     }
 
     var kilohertz: Measurement<UnitFrequency> {
-        return Measurement(value: self, unit: .kilohertz)
+        return measurement(as: UnitFrequency.kilohertz)
     }
 
     var hertz: Measurement<UnitFrequency> {
-        return Measurement(value: self, unit: .hertz)
+        return measurement(as: UnitFrequency.hertz)
     }
 
     var millihertz: Measurement<UnitFrequency> {
-        return Measurement(value: self, unit: .millihertz)
+        return measurement(as: UnitFrequency.millihertz)
     }
 
     var microhertz: Measurement<UnitFrequency> {
-        return Measurement(value: self, unit: .microhertz)
+        return measurement(as: UnitFrequency.microhertz)
     }
 
     var nanohertz: Measurement<UnitFrequency> {
-        return Measurement(value: self, unit: .nanohertz)
+        return measurement(as: UnitFrequency.nanohertz)
     }
 
     var framesPerSecond: Measurement<UnitFrequency> {
-        return Measurement(value: self, unit: .framesPerSecond)
+        return measurement(as: UnitFrequency.framesPerSecond)
     }
-
 }
 
 // MARK: - UnitArea
-public extension Double {
+public extension MeasurementConvertible {
 
     var squareMegameters: Measurement<UnitArea> {
-        return Measurement(value: self, unit: .squareMegameters)
+        return measurement(as: UnitArea.squareMegameters)
     }
 
     var squareKilometers: Measurement<UnitArea> {
-        return Measurement(value: self, unit: .squareKilometers)
+        return measurement(as: UnitArea.squareKilometers)
     }
 
     var squareMeters: Measurement<UnitArea> {
-        return Measurement(value: self, unit: .squareMeters)
+        return measurement(as: UnitArea.squareMeters)
     }
 
     var squareCentimeters: Measurement<UnitArea> {
-        return Measurement(value: self, unit: .squareCentimeters)
+        return measurement(as: UnitArea.squareCentimeters)
     }
 
     var squareMillimeters: Measurement<UnitArea> {
-        return Measurement(value: self, unit: .squareMillimeters)
+        return measurement(as: UnitArea.squareMillimeters)
     }
 
     var squareMicrometers: Measurement<UnitArea> {
-        return Measurement(value: self, unit: .squareMicrometers)
+        return measurement(as: UnitArea.squareMicrometers)
     }
 
     var squareNanometers: Measurement<UnitArea> {
-        return Measurement(value: self, unit: .squareNanometers)
+        return measurement(as: UnitArea.squareNanometers)
     }
 
     var squareInches: Measurement<UnitArea> {
-        return Measurement(value: self, unit: .squareInches)
+        return measurement(as: UnitArea.squareInches)
     }
 
     var squareFeet: Measurement<UnitArea> {
-        return Measurement(value: self, unit: .squareFeet)
+        return measurement(as: UnitArea.squareFeet)
     }
 
     var squareYards: Measurement<UnitArea> {
-        return Measurement(value: self, unit: .squareYards)
+        return measurement(as: UnitArea.squareYards)
     }
 
     var squareMiles: Measurement<UnitArea> {
-        return Measurement(value: self, unit: .squareMiles)
+        return measurement(as: UnitArea.squareMiles)
     }
 
     var acres: Measurement<UnitArea> {
-        return Measurement(value: self, unit: .acres)
+        return measurement(as: UnitArea.acres)
     }
 
     var ares: Measurement<UnitArea> {
-        return Measurement(value: self, unit: .ares)
+        return measurement(as: UnitArea.ares)
     }
 
     var hectares: Measurement<UnitArea> {
-        return Measurement(value: self, unit: .hectares)
+        return measurement(as: UnitArea.hectares)
     }
-
 }
 
 // MARK: - UnitLength
-public extension Double {
+public extension MeasurementConvertible {
 
     var megameters: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .megameters)
+        return measurement(as: UnitLength.megameters)
     }
 
     var kilometers: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .kilometers)
+        return measurement(as: UnitLength.kilometers)
     }
 
     var hectometers: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .hectometers)
+        return measurement(as: UnitLength.hectometers)
     }
 
     var decameters: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .decameters)
+        return measurement(as: UnitLength.decameters)
     }
 
     var meters: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .meters)
+        return measurement(as: UnitLength.meters)
     }
 
     var decimeters: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .decimeters)
+        return measurement(as: UnitLength.decimeters)
     }
 
     var centimeters: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .centimeters)
+        return measurement(as: UnitLength.centimeters)
     }
 
     var millimeters: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .millimeters)
+        return measurement(as: UnitLength.millimeters)
     }
 
     var micrometers: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .micrometers)
+        return measurement(as: UnitLength.micrometers)
     }
 
     var nanometers: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .nanometers)
+        return measurement(as: UnitLength.nanometers)
     }
 
     var picometers: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .picometers)
+        return measurement(as: UnitLength.picometers)
     }
 
     var inches: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .inches)
+        return measurement(as: UnitLength.inches)
     }
 
     var feet: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .feet)
+        return measurement(as: UnitLength.feet)
     }
 
     var yards: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .yards)
+        return measurement(as: UnitLength.yards)
     }
 
     var miles: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .miles)
+        return measurement(as: UnitLength.miles)
     }
 
     var scandinavianMiles: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .scandinavianMiles)
+        return measurement(as: UnitLength.scandinavianMiles)
     }
 
     var lightyears: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .lightyears)
+        return measurement(as: UnitLength.lightyears)
     }
 
     var nauticalMiles: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .nauticalMiles)
+        return measurement(as: UnitLength.nauticalMiles)
     }
 
     var fathoms: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .fathoms)
+        return measurement(as: UnitLength.fathoms)
     }
 
     var furlongs: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .furlongs)
+        return measurement(as: UnitLength.furlongs)
     }
 
     var astronomicalUnits: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .astronomicalUnits)
+        return measurement(as: UnitLength.astronomicalUnits)
     }
 
     var parsecs: Measurement<UnitLength> {
-        return Measurement(value: self, unit: .parsecs)
+        return measurement(as: UnitLength.parsecs)
     }
-
 }
 
 // MARK: - UnitElectricCurrent
-public extension Double {
+public extension MeasurementConvertible {
 
     var megaamperes: Measurement<UnitElectricCurrent> {
-        return Measurement(value: self, unit: .megaamperes)
+        return measurement(as: UnitElectricCurrent.megaamperes)
     }
 
     var kiloamperes: Measurement<UnitElectricCurrent> {
-        return Measurement(value: self, unit: .kiloamperes)
+        return measurement(as: UnitElectricCurrent.kiloamperes)
     }
 
     var amperes: Measurement<UnitElectricCurrent> {
-        return Measurement(value: self, unit: .amperes)
+        return measurement(as: UnitElectricCurrent.amperes)
     }
 
     var milliamperes: Measurement<UnitElectricCurrent> {
-        return Measurement(value: self, unit: .milliamperes)
+        return measurement(as: UnitElectricCurrent.milliamperes)
     }
 
     var microamperes: Measurement<UnitElectricCurrent> {
-        return Measurement(value: self, unit: .microamperes)
+        return measurement(as: UnitElectricCurrent.microamperes)
     }
-
 }
 
 // MARK: - UnitFuelEfficiency
-public extension Double {
+public extension MeasurementConvertible {
 
     var litersPer100Kilometers: Measurement<UnitFuelEfficiency> {
-        return Measurement(value: self, unit: .litersPer100Kilometers)
+        return measurement(as: UnitFuelEfficiency.litersPer100Kilometers)
     }
 
     var milesPerImperialGallon: Measurement<UnitFuelEfficiency> {
-        return Measurement(value: self, unit: .milesPerImperialGallon)
+        return measurement(as: UnitFuelEfficiency.milesPerImperialGallon)
     }
 
     var milesPerGallon: Measurement<UnitFuelEfficiency> {
-        return Measurement(value: self, unit: .milesPerGallon)
+        return measurement(as: UnitFuelEfficiency.milesPerGallon)
     }
-
 }
 
 // MARK: - UnitConcentrationMass
-public extension Double {
+public extension MeasurementConvertible {
 
     var gramsPerLiter: Measurement<UnitConcentrationMass> {
-        return Measurement(value: self, unit: .gramsPerLiter)
+        return measurement(as: UnitConcentrationMass.gramsPerLiter)
     }
 
     var milligramsPerDeciliter: Measurement<UnitConcentrationMass> {
-        return Measurement(value: self, unit: .milligramsPerDeciliter)
+        return measurement(as: UnitConcentrationMass.milligramsPerDeciliter)
     }
-
 }
 
 // MARK: - UnitVolume
 
-public extension Double {
+public extension MeasurementConvertible {
 
     var megaliters: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .megaliters)
+        return measurement(as: UnitVolume.megaliters)
     }
 
     var kiloliters: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .kiloliters)
+        return measurement(as: UnitVolume.kiloliters)
     }
 
     var liters: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .liters)
+        return measurement(as: UnitVolume.liters)
     }
 
     var deciliters: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .deciliters)
+        return measurement(as: UnitVolume.deciliters)
     }
 
     var centiliters: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .centiliters)
+        return measurement(as: UnitVolume.centiliters)
     }
 
     var milliliters: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .milliliters)
+        return measurement(as: UnitVolume.milliliters)
     }
 
     var cubicKilometers: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .cubicKilometers)
+        return measurement(as: UnitVolume.cubicKilometers)
     }
 
     var cubicMeters: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .cubicMeters)
+        return measurement(as: UnitVolume.cubicMeters)
     }
 
     var cubicDecimeters: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .cubicDecimeters)
+        return measurement(as: UnitVolume.cubicDecimeters)
     }
 
     var cubicCentimeters: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .cubicCentimeters)
+        return measurement(as: UnitVolume.cubicCentimeters)
     }
 
     var cubicMillimeters: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .cubicMillimeters)
+        return measurement(as: UnitVolume.cubicMillimeters)
     }
 
     var cubicInches: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .cubicInches)
+        return measurement(as: UnitVolume.cubicInches)
     }
 
     var cubicFeet: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .cubicFeet)
+        return measurement(as: UnitVolume.cubicFeet)
     }
 
     var cubicYards: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .cubicYards)
+        return measurement(as: UnitVolume.cubicYards)
     }
 
     var cubicMiles: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .cubicMiles)
+        return measurement(as: UnitVolume.cubicMiles)
     }
 
     var acreFeet: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .acreFeet)
+        return measurement(as: UnitVolume.acreFeet)
     }
 
     var bushels: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .bushels)
+        return measurement(as: UnitVolume.bushels)
     }
 
     var teaspoons: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .teaspoons)
+        return measurement(as: UnitVolume.teaspoons)
     }
 
     var tablespoons: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .tablespoons)
+        return measurement(as: UnitVolume.tablespoons)
     }
 
     var fluidOunces: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .fluidOunces)
+        return measurement(as: UnitVolume.fluidOunces)
     }
 
     var cups: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .cups)
+        return measurement(as: UnitVolume.cups)
     }
 
     var pints: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .pints)
+        return measurement(as: UnitVolume.pints)
     }
 
     var quarts: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .quarts)
+        return measurement(as: UnitVolume.quarts)
     }
 
     var gallons: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .gallons)
+        return measurement(as: UnitVolume.gallons)
     }
 
     var imperialTeaspoons: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .imperialTeaspoons)
+        return measurement(as: UnitVolume.imperialTeaspoons)
     }
 
     var imperialTablespoons: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .imperialTablespoons)
+        return measurement(as: UnitVolume.imperialTablespoons)
     }
 
     var imperialFluidOunces: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .imperialFluidOunces)
+        return measurement(as: UnitVolume.imperialFluidOunces)
     }
 
     var imperialPints: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .imperialPints)
+        return measurement(as: UnitVolume.imperialPints)
     }
 
     var imperialQuarts: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .imperialQuarts)
+        return measurement(as: UnitVolume.imperialQuarts)
     }
 
     var imperialGallons: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .imperialGallons)
+        return measurement(as: UnitVolume.imperialGallons)
     }
 
     var metricCups: Measurement<UnitVolume> {
-        return Measurement(value: self, unit: .metricCups)
+        return measurement(as: UnitVolume.metricCups)
     }
-
 }
 
 // MARK: - UnitSpeed
-public extension Double {
+public extension MeasurementConvertible {
 
     var metersPerSecond: Measurement<UnitSpeed> {
-        return Measurement(value: self, unit: .metersPerSecond)
+        return measurement(as: UnitSpeed.metersPerSecond)
     }
 
     var kilometersPerHour: Measurement<UnitSpeed> {
-        return Measurement(value: self, unit: .kilometersPerHour)
+        return measurement(as: UnitSpeed.kilometersPerHour)
     }
 
     var milesPerHour: Measurement<UnitSpeed> {
-        return Measurement(value: self, unit: .milesPerHour)
+        return measurement(as: UnitSpeed.milesPerHour)
     }
 
     var knots: Measurement<UnitSpeed> {
-        return Measurement(value: self, unit: .knots)
+        return measurement(as: UnitSpeed.knots)
     }
-
 }
 
 // MARK: - UnitElectricResistance
-public extension Double {
+public extension MeasurementConvertible {
 
     var megaohms: Measurement<UnitElectricResistance> {
-        return Measurement(value: self, unit: .megaohms)
+        return measurement(as: UnitElectricResistance.megaohms)
     }
 
     var kiloohms: Measurement<UnitElectricResistance> {
-        return Measurement(value: self, unit: .kiloohms)
+        return measurement(as: UnitElectricResistance.kiloohms)
     }
 
     var ohms: Measurement<UnitElectricResistance> {
-        return Measurement(value: self, unit: .ohms)
+        return measurement(as: UnitElectricResistance.ohms)
     }
 
     var milliohms: Measurement<UnitElectricResistance> {
-        return Measurement(value: self, unit: .milliohms)
+        return measurement(as: UnitElectricResistance.milliohms)
     }
 
     var microohms: Measurement<UnitElectricResistance> {
-        return Measurement(value: self, unit: .microohms)
+        return measurement(as: UnitElectricResistance.microohms)
     }
-
 }
 
 // MARK: - UnitMass
-public extension Double {
+public extension MeasurementConvertible {
 
     var kilograms: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .kilograms)
+        return measurement(as: UnitMass.kilograms)
     }
 
     var grams: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .grams)
+        return measurement(as: UnitMass.grams)
     }
 
     var decigrams: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .decigrams)
+        return measurement(as: UnitMass.decigrams)
     }
 
     var centigrams: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .centigrams)
+        return measurement(as: UnitMass.centigrams)
     }
 
     var milligrams: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .milligrams)
+        return measurement(as: UnitMass.milligrams)
     }
 
     var micrograms: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .micrograms)
+        return measurement(as: UnitMass.micrograms)
     }
 
     var nanograms: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .nanograms)
+        return measurement(as: UnitMass.nanograms)
     }
 
     var picograms: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .picograms)
+        return measurement(as: UnitMass.picograms)
     }
 
     var ounces: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .ounces)
+        return measurement(as: UnitMass.ounces)
     }
 
     var pounds: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .pounds)
+        return measurement(as: UnitMass.pounds)
     }
 
     var stones: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .stones)
+        return measurement(as: UnitMass.stones)
     }
 
     var metricTons: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .metricTons)
+        return measurement(as: UnitMass.metricTons)
     }
 
     var shortTons: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .shortTons)
+        return measurement(as: UnitMass.shortTons)
     }
 
     var carats: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .carats)
+        return measurement(as: UnitMass.carats)
     }
 
     var ouncesTroy: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .ouncesTroy)
+        return measurement(as: UnitMass.ouncesTroy)
     }
 
     var slugs: Measurement<UnitMass> {
-        return Measurement(value: self, unit: .slugs)
+        return measurement(as: UnitMass.slugs)
     }
-    
 }
 
 // MARK: - UnitEnergy
-public extension Double {
-    
+public extension MeasurementConvertible {
+
     var kilojoules: Measurement<UnitEnergy> {
-        return Measurement(value: self, unit: .kilojoules)
+        return measurement(as: UnitEnergy.kilojoules)
     }
-    
+
     var joules: Measurement<UnitEnergy> {
-        return Measurement(value: self, unit: .joules)
+        return measurement(as: UnitEnergy.joules)
     }
-    
+
     var kilocalories: Measurement<UnitEnergy> {
-        return Measurement(value: self, unit: .kilocalories)
+        return measurement(as: UnitEnergy.kilocalories)
     }
-    
+
     var calories: Measurement<UnitEnergy> {
-        return Measurement(value: self, unit: .calories)
+        return measurement(as: UnitEnergy.calories)
     }
-    
+
     var kilowattHours: Measurement<UnitEnergy> {
-        return Measurement(value: self, unit: .kilowattHours)
+        return measurement(as: UnitEnergy.kilowattHours)
     }
-    
 }
 
 // MARK: - UnitInformationStorage
-public extension Double {
+public extension MeasurementConvertible {
 
     var bytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .bytes)
+        return measurement(as: UnitInformationStorage.bytes)
     }
 
     var bits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .bits)
+        return measurement(as: UnitInformationStorage.bits)
     }
 
     var nibbles: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .nibbles)
+        return measurement(as: UnitInformationStorage.nibbles)
     }
 
     var yottabytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .yottabytes)
+        return measurement(as: UnitInformationStorage.yottabytes)
     }
 
     var zettabytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .zettabytes)
+        return measurement(as: UnitInformationStorage.zettabytes)
     }
 
     var exabytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .exabytes)
+        return measurement(as: UnitInformationStorage.exabytes)
     }
 
     var petabytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .petabytes)
+        return measurement(as: UnitInformationStorage.petabytes)
     }
 
     var terabytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .terabytes)
+        return measurement(as: UnitInformationStorage.terabytes)
     }
 
     var gigabytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .gigabytes)
+        return measurement(as: UnitInformationStorage.gigabytes)
     }
 
     var megabytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .megabytes)
+        return measurement(as: UnitInformationStorage.megabytes)
     }
 
     var kilobytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .kilobytes)
+        return measurement(as: UnitInformationStorage.kilobytes)
     }
 
     var yottabits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .yottabits)
+        return measurement(as: UnitInformationStorage.yottabits)
     }
 
     var zettabits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .zettabits)
+        return measurement(as: UnitInformationStorage.zettabits)
     }
 
     var exabits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .exabits)
+        return measurement(as: UnitInformationStorage.exabits)
     }
 
     var petabits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .petabits)
+        return measurement(as: UnitInformationStorage.petabits)
     }
 
     var terabits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .terabits)
+        return measurement(as: UnitInformationStorage.terabits)
     }
 
     var gigabits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .gigabits)
+        return measurement(as: UnitInformationStorage.gigabits)
     }
 
     var megabits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .megabits)
+        return measurement(as: UnitInformationStorage.megabits)
     }
 
     var kilobits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .kilobits)
+        return measurement(as: UnitInformationStorage.kilobits)
     }
 
     var yobibytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .yobibytes)
+        return measurement(as: UnitInformationStorage.yobibytes)
     }
 
     var zebibytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .zebibytes)
+        return measurement(as: UnitInformationStorage.zebibytes)
     }
 
     var exbibytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .exbibytes)
+        return measurement(as: UnitInformationStorage.exbibytes)
     }
 
     var pebibytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .pebibytes)
+        return measurement(as: UnitInformationStorage.pebibytes)
     }
 
     var tebibytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .tebibytes)
+        return measurement(as: UnitInformationStorage.tebibytes)
     }
 
     var gibibytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .gibibytes)
+        return measurement(as: UnitInformationStorage.gibibytes)
     }
 
     var mebibytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .mebibytes)
+        return measurement(as: UnitInformationStorage.mebibytes)
     }
 
     var kibibytes: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .kibibytes)
+        return measurement(as: UnitInformationStorage.kibibytes)
     }
 
     var yobibits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .yobibits)
+        return measurement(as: UnitInformationStorage.yobibits)
     }
 
     var zebibits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .zebibits)
+        return measurement(as: UnitInformationStorage.zebibits)
     }
 
     var exbibits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .exbibits)
+        return measurement(as: UnitInformationStorage.exbibits)
     }
 
     var pebibits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .pebibits)
+        return measurement(as: UnitInformationStorage.pebibits)
     }
 
     var tebibits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .tebibits)
+        return measurement(as: UnitInformationStorage.tebibits)
     }
 
     var gibibits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .gibibits)
+        return measurement(as: UnitInformationStorage.gibibits)
     }
 
     var mebibits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .mebibits)
+        return measurement(as: UnitInformationStorage.mebibits)
     }
 
     var kibibits: Measurement<UnitInformationStorage> {
-        return Measurement<UnitInformationStorage>(value: self, unit: .kibibits)
+        return measurement(as: UnitInformationStorage.kibibits)
     }
-
 }
