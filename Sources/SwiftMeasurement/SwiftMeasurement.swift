@@ -147,22 +147,18 @@ public extension Double {
         return Measurement(value: self, unit: .hours)
     }
 
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13, *)
     var milliseconds: Measurement<UnitDuration> {
         return Measurement(value: self, unit: .milliseconds)
     }
 
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13, *)
     var microseconds: Measurement<UnitDuration> {
         return Measurement(value: self, unit: .microseconds)
     }
 
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13, *)
     var nanoseconds: Measurement<UnitDuration> {
         return Measurement(value: self, unit: .nanoseconds)
     }
 
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13, *)
     var picoseconds: Measurement<UnitDuration> {
         return Measurement(value: self, unit: .picoseconds)
     }
@@ -321,7 +317,6 @@ public extension Double {
         return Measurement(value: self, unit: .nanohertz)
     }
 
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13, *)
     var framesPerSecond: Measurement<UnitFrequency> {
         return Measurement(value: self, unit: .framesPerSecond)
     }
@@ -808,7 +803,6 @@ public extension Double {
 }
 
 // - UnitInformationStorage: []
-@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 public extension Double {
 
     var bytes: Measurement<UnitInformationStorage> {
