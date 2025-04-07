@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.10
 
 import PackageDescription
 
@@ -6,10 +6,11 @@ let package = Package(
     name: "SwiftMeasurement",
 
     platforms: [
-        .macOS(.v10_12),
-        .iOS(.v10),
-        .watchOS(.v3),
-        .tvOS(.v10),
+        .macOS(.v14),
+        .iOS(.v17),
+        .watchOS(.v10),
+        .tvOS(.v17),
+        .visionOS(.v1)
     ],
 
     products: [
