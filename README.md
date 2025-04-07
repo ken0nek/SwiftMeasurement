@@ -1,13 +1,15 @@
 # SwiftMeasurement
 
-![Version](https://img.shields.io/cocoapods/v/SwiftMeasurement)
-![License](https://img.shields.io/cocoapods/l/SwiftMeasurement)
-![Platforms](https://img.shields.io/cocoapods/p/SwiftMeasurement)
-
 The best way to deal with Measurements and Units in Swift.
 
-Measurements and Units are newly introduced in iOS 10.
+Measurements and Units are introduced in iOS 10.
 * [Measurements and Units - WWDC 2016 - Videos - Apple Developer](https://developer.apple.com/videos/play/wwdc2016/238/)
+
+## Features
+
+- Support for all units declared in the Foundation framework
+- Easy conversion between different units
+- Simple and intuitive API for working with measurements
 
 ## Usage
 
@@ -23,101 +25,42 @@ Measurement<UnitLength>(value: 3, unit: .kilometers) + Measurement<UnitLength>(v
 3.kilometers + 4.kilometers
 ```
 
-SwiftMeasurement supports all units declared in Foundation framework.
-
-- UnitLength
-- UnitFuelEfficiency
-- UnitElectricResistance
-- UnitIlluminance
-- UnitDispersion
-- UnitElectricCharge
-- UnitVolume
-- UnitEnergy
-- UnitAngle
-- UnitDuration
-- UnitTemperature
-- UnitFrequency
-- UnitPower
-- UnitElectricCurrent
-- UnitElectricPotentialDifference
-- UnitAcceleration
-- UnitSpeed
-- UnitArea
-- UnitMass
-- UnitConcentrationMass
-- UnitPressure
-
-## Requirements
-
-Current version is compatible with:
-
-- Swift 5.0+
-- masOS 10.12 or later
-- iOS 10.0 or later
-- watchOS 3.0 or later
-- tvOS 10.0 or later
-
 ## Installation
 
-SwiftMeasurement supports multiple methods for installing the library in a project.
+### Swift Package Manager (Recommended)
 
-## Installation with CocoaPods
+The [Swift Package Manager](https://swift.org/package-manager/) is the recommended way to add SwiftMeasurement to your project.
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like SwiftMeasurement in your projects. You can install it with the following command:
+1. In Xcode, select File > Add Package Dependencies...
+2. Enter the repository URL: `https://github.com/ken0nek/SwiftMeasurement.git`
+3. Select "Up to Next Major Version" with the current version
+4. Click "Add Package"
 
-```bash
-$ gem install cocoapods
-```
-
-#### Podfile
-
-To integrate SwiftMeasurement into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
-```ruby
-pod 'SwiftMeasurement'
-```
-
-Then, run the following command:
-
-```bash
-$ pod install
-```
-
-### Installation with Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
-
-You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
-
-```bash
-$ brew update
-$ brew install carthage
-```
-
-To integrate SwiftMeasurement into your Xcode project using Carthage, specify it in your `Cartfile`:
-
-```ogdl
-github "ken0nek/SwiftMeasurement"
-```
-
-Run `carthage` to build the framework and drag the built `SwiftMeasurement.framework` into your Xcode project.
-
-## Future features
-- [ ] Describe relations between dimentions. [L, M, T, L/T, L/T^2, etc...]
+You can also add SwiftMeasurement as a dependency directly in your `Package.swift` file:
 
 ```swift
-
-// Speed * Duration -> Length
-
-func * (lhs: Measurement<UnitSpeed>, rhs: Measurement<UnitDuration>) -> Measurement<UnitLength> {
-    let v = lhs.converted(to: .baseUnit()).value * rhs.converted(to: .baseUnit()).value
-        return Measurement<UnitLength>(value: v, unit: .baseUnit())
-
-}
-
-let duration = 10.hours // 10.0 hr
-let speed = 5.kilometersPerHour // 5.0 km/h
-
-(speed * duration).converted(to: .kilometers) // 50.00004 km
+dependencies: [
+    .package(url: "https://github.com/ken0nek/SwiftMeasurement.git", from: "0.4.1")
+]
 ```
 
+Then add the dependency to your target:
+
+```swift
+.target(
+    name: "YourTarget",
+    dependencies: ["SwiftMeasurement"]
+)
+```
+
+### Swift Package Manager (Command Line)
+
+You can also add SwiftMeasurement using the Swift Package Manager command line:
+
+```bash
+swift package add-dependency https://github.com/ken0nek/SwiftMeasurement.git
+```
+
+## License
+
+SwiftMeasurement is available under the MIT license. See the LICENSE file for more info.

@@ -24,7 +24,7 @@
 
 import Foundation
 
-// - UnitAngle: []
+// MARK: - UnitAngle
 public extension Double {
 
     var degrees: Measurement<UnitAngle> {
@@ -53,7 +53,7 @@ public extension Double {
 
 }
 
-// - UnitPressure: [M/LT^2]
+// MARK: - UnitPressure
 public extension Double {
 
     var newtonsPerMetersSquared: Measurement<UnitPressure> {
@@ -98,7 +98,7 @@ public extension Double {
 
 }
 
-// - UnitDispersion: []
+// MARK: - UnitDispersion
 public extension Double {
 
     var partsPerMillion: Measurement<UnitDispersion> {
@@ -107,7 +107,7 @@ public extension Double {
 
 }
 
-// - UnitElectricPotentialDifference: [L^2M/T^3I]
+// MARK: - UnitElectricPotentialDifference
 public extension Double {
 
     var megavolts: Measurement<UnitElectricPotentialDifference> {
@@ -132,7 +132,7 @@ public extension Double {
 
 }
 
-// - UnitDuration: [T]
+// MARK: - UnitDuration
 public extension Double {
 
     var seconds: Measurement<UnitDuration> {
@@ -147,29 +147,25 @@ public extension Double {
         return Measurement(value: self, unit: .hours)
     }
 
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13, *)
     var milliseconds: Measurement<UnitDuration> {
         return Measurement(value: self, unit: .milliseconds)
     }
 
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13, *)
     var microseconds: Measurement<UnitDuration> {
         return Measurement(value: self, unit: .microseconds)
     }
 
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13, *)
     var nanoseconds: Measurement<UnitDuration> {
         return Measurement(value: self, unit: .nanoseconds)
     }
 
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13, *)
     var picoseconds: Measurement<UnitDuration> {
         return Measurement(value: self, unit: .picoseconds)
     }
 
 }
 
-// - UnitPower: [ML^2/T^3]
+// MARK: - UnitPower
 public extension Double {
 
     var terawatts: Measurement<UnitPower> {
@@ -218,7 +214,7 @@ public extension Double {
 
 }
 
-// - UnitElectricCharge: [IT]
+// MARK: - UnitElectricCharge
 public extension Double {
 
     var coulombs: Measurement<UnitElectricCharge> {
@@ -247,7 +243,7 @@ public extension Double {
 
 }
 
-// - UnitAcceleration: [L/T^2]
+// MARK: - UnitAcceleration
 public extension Double {
 
     var metersPerSecondSquared: Measurement<UnitAcceleration> {
@@ -260,7 +256,7 @@ public extension Double {
 
 }
 
-// - UnitTemperature: [Θ]
+// MARK: - UnitTemperature
 public extension Double {
 
     var kelvin: Measurement<UnitTemperature> {
@@ -277,7 +273,7 @@ public extension Double {
 
 }
 
-// - UnitIlluminance: [J/L^2]
+// MARK: - UnitIlluminance
 public extension Double {
 
     var lux: Measurement<UnitIlluminance> {
@@ -286,7 +282,7 @@ public extension Double {
 
 }
 
-// - UnitFrequency: [/T]
+// MARK: - UnitFrequency
 public extension Double {
 
     var terahertz: Measurement<UnitFrequency> {
@@ -321,14 +317,13 @@ public extension Double {
         return Measurement(value: self, unit: .nanohertz)
     }
 
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13, *)
     var framesPerSecond: Measurement<UnitFrequency> {
         return Measurement(value: self, unit: .framesPerSecond)
     }
 
 }
 
-// - UnitArea: [L^2]
+// MARK: - UnitArea
 public extension Double {
 
     var squareMegameters: Measurement<UnitArea> {
@@ -389,7 +384,7 @@ public extension Double {
 
 }
 
-// - UnitLength: [L]
+// MARK: - UnitLength
 public extension Double {
 
     var megameters: Measurement<UnitLength> {
@@ -482,7 +477,7 @@ public extension Double {
 
 }
 
-// - UnitElectricCurrent: [I]
+// MARK: - UnitElectricCurrent
 public extension Double {
 
     var megaamperes: Measurement<UnitElectricCurrent> {
@@ -507,7 +502,7 @@ public extension Double {
 
 }
 
-// - UnitFuelEfficiency
+// MARK: - UnitFuelEfficiency
 public extension Double {
 
     var litersPer100Kilometers: Measurement<UnitFuelEfficiency> {
@@ -524,7 +519,7 @@ public extension Double {
 
 }
 
-// - UnitConcentrationMass: [M/L^3]
+// MARK: - UnitConcentrationMass
 public extension Double {
 
     var gramsPerLiter: Measurement<UnitConcentrationMass> {
@@ -537,7 +532,7 @@ public extension Double {
 
 }
 
-// - UnitVolume: [L^3]
+// MARK: - UnitVolume
 
 public extension Double {
 
@@ -667,7 +662,7 @@ public extension Double {
 
 }
 
-// - UnitSpeed: [L/T]
+// MARK: - UnitSpeed
 public extension Double {
 
     var metersPerSecond: Measurement<UnitSpeed> {
@@ -688,7 +683,7 @@ public extension Double {
 
 }
 
-// - UnitElectricResistance: [L^2M/T^3I^2]
+// MARK: - UnitElectricResistance
 public extension Double {
 
     var megaohms: Measurement<UnitElectricResistance> {
@@ -713,7 +708,7 @@ public extension Double {
 
 }
 
-// - UnitMass: [M]
+// MARK: - UnitMass
 public extension Double {
 
     var kilograms: Measurement<UnitMass> {
@@ -782,7 +777,7 @@ public extension Double {
     
 }
 
-// - UnitEnergy: [ML^2/T^2]
+// MARK: - UnitEnergy
 public extension Double {
     
     var kilojoules: Measurement<UnitEnergy> {
@@ -807,8 +802,7 @@ public extension Double {
     
 }
 
-// - UnitInformationStorage: []
-@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+// MARK: - UnitInformationStorage
 public extension Double {
 
     var bytes: Measurement<UnitInformationStorage> {
