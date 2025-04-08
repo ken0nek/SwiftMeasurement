@@ -40,7 +40,7 @@ You can also add SwiftMeasurement as a dependency directly in your `Package.swif
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/ken0nek/SwiftMeasurement.git", from: "0.5.0")
+    .package(url: "https://github.com/ken0nek/SwiftMeasurement.git", from: "1.0.0")
 ]
 ```
 
