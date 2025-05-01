@@ -1,13 +1,5 @@
 import Foundation
 
-// MARK: - UnitDispersion
-public extension MeasurementConvertible {
-
-    var partsPerMillion: Measurement<UnitDispersion> {
-        return measurement(as: UnitDispersion.partsPerMillion)
-    }
-}
-
 // MARK: - UnitElectricPotentialDifference
 public extension MeasurementConvertible {
 
