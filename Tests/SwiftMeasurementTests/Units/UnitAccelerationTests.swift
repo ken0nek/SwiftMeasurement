@@ -6,5 +6,5 @@ import Testing
     let value = 1
 
     #expect(value.metersPerSecondSquared == Measurement<UnitAcceleration>(value: value, unit: .metersPerSecondSquared))
-    #expect(value.gravity == Measurement<UnitAcceleration>(value: value, unit: .gravity))
+    #expect(value.gravity                == Measurement<UnitAcceleration>(value: value, unit: .gravity))
 }
