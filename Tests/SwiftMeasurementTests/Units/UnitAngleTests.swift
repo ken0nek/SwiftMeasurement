@@ -3,7 +3,7 @@ import Testing
 @testable import SwiftMeasurement
 
 @Test func testUnitAngle() {
-    let value = 1.0
+    let value = 1
 
     #expect(value.degrees == Measurement<UnitAngle>(value: value, unit: .degrees))
     #expect(value.arcMinutes == Measurement<UnitAngle>(value: value, unit: .arcMinutes))

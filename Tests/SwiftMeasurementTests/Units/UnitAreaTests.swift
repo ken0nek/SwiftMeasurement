@@ -3,8 +3,8 @@ import Testing
 @testable import SwiftMeasurement
 
 @Test func testUnitArea() {
-    let value = 1.0
-    
+    let value = 1
+
     #expect(value.squareMegameters == Measurement<UnitArea>(value: value, unit: .squareMegameters))
     #expect(value.squareKilometers == Measurement<UnitArea>(value: value, unit: .squareKilometers))
     #expect(value.squareMeters == Measurement<UnitArea>(value: value, unit: .squareMeters))

@@ -3,8 +3,8 @@ import Testing
 @testable import SwiftMeasurement
 
 @Test func testUnitMass() {
-    let value = 1.0
-    
+    let value = 1
+
     #expect(value.kilograms == Measurement<UnitMass>(value: value, unit: .kilograms))
     #expect(value.grams == Measurement<UnitMass>(value: value, unit: .grams))
     #expect(value.decigrams == Measurement<UnitMass>(value: value, unit: .decigrams))

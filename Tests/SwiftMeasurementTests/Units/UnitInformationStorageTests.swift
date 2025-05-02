@@ -3,8 +3,8 @@ import Testing
 @testable import SwiftMeasurement
 
 @Test func testUnitInformationStorage() {
-    let value = 1.0
-    
+    let value = 1
+
     #expect(value.bytes == Measurement<UnitInformationStorage>(value: value, unit: .bytes))
     #expect(value.bits == Measurement<UnitInformationStorage>(value: value, unit: .bits))
     #expect(value.nibbles == Measurement<UnitInformationStorage>(value: value, unit: .nibbles))

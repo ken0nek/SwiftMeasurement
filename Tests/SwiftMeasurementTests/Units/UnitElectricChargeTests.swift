@@ -3,8 +3,8 @@ import Testing
 @testable import SwiftMeasurement
 
 @Test func testUnitElectricCharge() {
-    let value = 1.0
-    
+    let value = 1
+
     #expect(value.coulombs == Measurement<UnitElectricCharge>(value: value, unit: .coulombs))
     #expect(value.megaampereHours == Measurement<UnitElectricCharge>(value: value, unit: .megaampereHours))
     #expect(value.kiloampereHours == Measurement<UnitElectricCharge>(value: value, unit: .kiloampereHours))

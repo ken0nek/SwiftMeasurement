@@ -3,8 +3,8 @@ import Testing
 @testable import SwiftMeasurement
 
 @Test func testUnitLength() {
-    let value = 1.0
-    
+    let value = 1
+
     #expect(value.megameters == Measurement<UnitLength>(value: value, unit: .megameters))
     #expect(value.kilometers == Measurement<UnitLength>(value: value, unit: .kilometers))
     #expect(value.hectometers == Measurement<UnitLength>(value: value, unit: .hectometers))

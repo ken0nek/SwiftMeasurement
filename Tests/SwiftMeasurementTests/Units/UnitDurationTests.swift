@@ -3,7 +3,7 @@ import Testing
 @testable import SwiftMeasurement
 
 @Test func testUnitDuration() {
-    let value = 1.0
+    let value = 1
 
     #expect(value.seconds == Measurement<UnitDuration>(value: value, unit: .seconds))
     #expect(value.minutes == Measurement<UnitDuration>(value: value, unit: .minutes))

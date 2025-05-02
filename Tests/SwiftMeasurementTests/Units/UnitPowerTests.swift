@@ -3,8 +3,8 @@ import Testing
 @testable import SwiftMeasurement
 
 @Test func testUnitPower() {
-    let value = 1.0
-    
+    let value = 1
+
     #expect(value.terawatts == Measurement<UnitPower>(value: value, unit: .terawatts))
     #expect(value.gigawatts == Measurement<UnitPower>(value: value, unit: .gigawatts))
     #expect(value.megawatts == Measurement<UnitPower>(value: value, unit: .megawatts))

@@ -3,8 +3,8 @@ import Testing
 @testable import SwiftMeasurement
 
 @Test func testUnitElectricPotentialDifference() {
-    let value = 1.0
-    
+    let value = 1
+
     #expect(value.megavolts == Measurement<UnitElectricPotentialDifference>(value: value, unit: .megavolts))
     #expect(value.kilovolts == Measurement<UnitElectricPotentialDifference>(value: value, unit: .kilovolts))
     #expect(value.volts == Measurement<UnitElectricPotentialDifference>(value: value, unit: .volts))

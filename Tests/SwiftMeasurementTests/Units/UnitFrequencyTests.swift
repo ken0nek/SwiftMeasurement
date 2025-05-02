@@ -3,8 +3,8 @@ import Testing
 @testable import SwiftMeasurement
 
 @Test func testUnitFrequency() {
-    let value = 1.0
-    
+    let value = 1
+
     #expect(value.terahertz == Measurement<UnitFrequency>(value: value, unit: .terahertz))
     #expect(value.gigahertz == Measurement<UnitFrequency>(value: value, unit: .gigahertz))
     #expect(value.megahertz == Measurement<UnitFrequency>(value: value, unit: .megahertz))

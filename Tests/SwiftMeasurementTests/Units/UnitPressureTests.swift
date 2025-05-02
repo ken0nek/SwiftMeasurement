@@ -3,7 +3,7 @@ import Testing
 @testable import SwiftMeasurement
 
 @Test func testUnitPressure() {
-    let value = 1.0
+    let value = 1
 
     #expect(value.newtonsPerMetersSquared == Measurement<UnitPressure>(value: value, unit: .newtonsPerMetersSquared))
     #expect(value.gigapascals == Measurement<UnitPressure>(value: value, unit: .gigapascals))

@@ -3,8 +3,8 @@ import Testing
 @testable import SwiftMeasurement
 
 @Test func testUnitVolume() {
-    let value = 1.0
-    
+    let value = 1
+
     #expect(value.megaliters == Measurement<UnitVolume>(value: value, unit: .megaliters))
     #expect(value.kiloliters == Measurement<UnitVolume>(value: value, unit: .kiloliters))
     #expect(value.liters == Measurement<UnitVolume>(value: value, unit: .liters))
