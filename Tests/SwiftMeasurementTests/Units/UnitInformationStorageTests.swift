@@ -2,7 +2,8 @@ import Foundation
 import Testing
 @testable import SwiftMeasurement
 
-@Test func testUnitInformationStorage() {
+@Test("All informationstorage units properties are properly mapped")
+func testInformationStorageUnits() {
     let value = 1
 
     #expect(value.bytes      == Measurement<UnitInformationStorage>(value: value, unit: .bytes))

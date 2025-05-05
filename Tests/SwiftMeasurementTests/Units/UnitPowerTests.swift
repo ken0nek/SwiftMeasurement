@@ -2,7 +2,8 @@ import Foundation
 import Testing
 @testable import SwiftMeasurement
 
-@Test func testUnitPower() {
+@Test("All power units properties are properly mapped")
+func testPowerUnits() {
     let value = 1
 
     #expect(value.terawatts  == Measurement<UnitPower>(value: value, unit: .terawatts))

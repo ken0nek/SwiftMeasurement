@@ -2,7 +2,8 @@ import Foundation
 import Testing
 @testable import SwiftMeasurement
 
-@Test func testUnitDuration() {
+@Test("All duration units properties are properly mapped")
+func testDurationUnits() {
     let value = 1
 
     #expect(value.seconds      == Measurement<UnitDuration>(value: value, unit: .seconds))

@@ -2,7 +2,8 @@ import Foundation
 import Testing
 @testable import SwiftMeasurement
 
-@Test func testUnitMass() {
+@Test("All mass units properties are properly mapped")
+func testMassUnits() {
     let value = 1
 
     #expect(value.kilograms  == Measurement<UnitMass>(value: value, unit: .kilograms))

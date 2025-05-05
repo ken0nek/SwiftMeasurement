@@ -2,7 +2,8 @@ import Foundation
 import Testing
 @testable import SwiftMeasurement
 
-@Test func testUnitAngle() {
+@Test("All angle units properties are properly mapped")
+func testAngleUnits() {
     let value = 1
 
     #expect(value.degrees     == Measurement<UnitAngle>(value: value, unit: .degrees))

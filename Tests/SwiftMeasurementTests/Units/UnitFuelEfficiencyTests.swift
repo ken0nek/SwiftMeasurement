@@ -2,7 +2,8 @@ import Foundation
 import Testing
 @testable import SwiftMeasurement
 
-@Test func testUnitFuelEfficiency() {
+@Test("All fuelefficiency units properties are properly mapped")
+func testFuelEfficiencyUnits() {
     let value = 1
 
     #expect(value.litersPer100Kilometers == Measurement<UnitFuelEfficiency>(value: value, unit: .litersPer100Kilometers))

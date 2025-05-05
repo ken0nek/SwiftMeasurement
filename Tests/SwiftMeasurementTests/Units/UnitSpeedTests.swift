@@ -2,7 +2,8 @@ import Foundation
 import Testing
 @testable import SwiftMeasurement
 
-@Test func testUnitSpeed() {
+@Test("All speed units properties are properly mapped")
+func testSpeedUnits() {
     let value = 1
 
     #expect(value.metersPerSecond   == Measurement<UnitSpeed>(value: value, unit: .metersPerSecond))

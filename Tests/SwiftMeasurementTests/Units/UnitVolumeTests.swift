@@ -2,7 +2,8 @@ import Foundation
 import Testing
 @testable import SwiftMeasurement
 
-@Test func testUnitVolume() {
+@Test("All volume units properties are properly mapped")
+func testVolumeUnits() {
     let value = 1
 
     #expect(value.megaliters          == Measurement<UnitVolume>(value: value, unit: .megaliters))

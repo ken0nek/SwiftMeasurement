@@ -2,7 +2,8 @@ import Foundation
 import Testing
 @testable import SwiftMeasurement
 
-@Test func testUnitPressure() {
+@Test("All pressure units properties are properly mapped")
+func testPressureUnits() {
     let value = 1
 
     #expect(value.newtonsPerMetersSquared  == Measurement<UnitPressure>(value: value, unit: .newtonsPerMetersSquared))

@@ -2,7 +2,8 @@ import Foundation
 import Testing
 @testable import SwiftMeasurement
 
-@Test func testUnitLength() {
+@Test("All length units properties are properly mapped")
+func testLengthUnits() {
     let value = 1
 
     #expect(value.megameters        == Measurement<UnitLength>(value: value, unit: .megameters))

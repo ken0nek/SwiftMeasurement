@@ -2,7 +2,8 @@ import Foundation
 import Testing
 @testable import SwiftMeasurement
 
-@Test func testUnitTemperature() {
+@Test("All temperature units properties are properly mapped")
+func testTemperatureUnits() {
     let value = 1
 
     #expect(value.kelvin     == Measurement<UnitTemperature>(value: value, unit: .kelvin))

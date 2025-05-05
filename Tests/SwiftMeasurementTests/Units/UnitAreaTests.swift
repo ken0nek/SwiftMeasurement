@@ -2,7 +2,8 @@ import Foundation
 import Testing
 @testable import SwiftMeasurement
 
-@Test func testUnitArea() {
+@Test("All area units properties are properly mapped")
+func testAreaUnits() {
     let value = 1
 
     #expect(value.squareMegameters  == Measurement<UnitArea>(value: value, unit: .squareMegameters))

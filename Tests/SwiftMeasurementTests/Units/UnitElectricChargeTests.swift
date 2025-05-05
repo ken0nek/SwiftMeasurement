@@ -2,7 +2,8 @@ import Foundation
 import Testing
 @testable import SwiftMeasurement
 
-@Test func testUnitElectricCharge() {
+@Test("All electriccharge units properties are properly mapped")
+func testElectricChargeUnits() {
     let value = 1
 
     #expect(value.coulombs         == Measurement<UnitElectricCharge>(value: value, unit: .coulombs))

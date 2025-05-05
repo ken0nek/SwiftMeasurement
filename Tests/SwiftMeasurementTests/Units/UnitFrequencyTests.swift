@@ -2,7 +2,8 @@ import Foundation
 import Testing
 @testable import SwiftMeasurement
 
-@Test func testUnitFrequency() {
+@Test("All frequency units properties are properly mapped")
+func testFrequencyUnits() {
     let value = 1
 
     #expect(value.terahertz       == Measurement<UnitFrequency>(value: value, unit: .terahertz))
