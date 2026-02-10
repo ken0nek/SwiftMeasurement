@@ -25,11 +25,11 @@ Works with `Int`, `Double`, and `Float` across all 22 Foundation unit types.
 ```swift
 // Speed × Time = Distance
 let distance = 60.0.kilometersPerHour * 2.hours
-distance.asLength?.converted(to: .kilometers)  // 120.0 km
+distance.convert(to: UnitLength.kilometers)  // 120.0 km
 
 // Length × Length = Area
 let area = 10.0.meters * 5.0.meters
-area.asArea?.converted(to: .squareMeters)  // 50.0 m²
+area.convert(to: UnitArea.squareMeters)  // 50.0 m²
 
 // Square root
 area.squareRoot()?.asLength  // back to meters
