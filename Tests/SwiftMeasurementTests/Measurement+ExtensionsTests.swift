@@ -48,14 +48,14 @@ struct MeasurementInitializersTests {
 
 @Suite("Measurement Literals Tests")
 struct MeasurementLiteralsTests {
-    
+
     @Test("Float literals default to base units")
     func testFloatLiterals() {
         let distance: Measurement<UnitLength> = 3.5  // Should default to meters
         #expect(distance.value == 3.5)
         #expect(distance.unit == UnitLength.meters)
     }
-    
+
     @Test("Integer literals default to base units")
     func testIntegerLiterals() {
         let weight: Measurement<UnitMass> = 10  // Should default to kilograms

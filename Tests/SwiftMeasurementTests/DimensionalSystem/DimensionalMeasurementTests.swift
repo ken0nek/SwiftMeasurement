@@ -2,105 +2,11 @@ import Foundation
 import Testing
 @testable import SwiftMeasurement
 
-@Suite("Dimensional System")
-struct DimensionalSystemTests {
+@Suite("DimensionalMeasurement")
+struct DimensionalMeasurementTests {
 
-    @Suite("DimensionalExponents")
-    struct DimensionalExponentsTests {
-
-        @Test("Initialization")
-        func initialization() {
-            let length = DimensionalExponents(length: 1)
-            #expect(length.length == 1)
-            #expect(length.time == 0)
-            #expect(length.mass == 0)
-
-            let velocity = DimensionalExponents(length: 1, time: -1)
-            #expect(velocity.length == 1)
-            #expect(velocity.time == -1)
-            #expect(velocity.mass == 0)
-
-            let energy = DimensionalExponents(length: 2, time: -2, mass: 1)
-            #expect(energy.length == 2)
-            #expect(energy.time == -2)
-            #expect(energy.mass == 1)
-        }
-
-        @Test("Addition")
-        func addition() {
-            let length = DimensionalExponents(length: 1)
-            let time = DimensionalExponents(time: 1)
-
-            let result = length + time
-            #expect(result.length == 1)
-            #expect(result.time == 1)
-            #expect(result.mass == 0)
-        }
-
-        @Test("Subtraction")
-        func subtraction() {
-            let energy = DimensionalExponents(length: 2, time: -2, mass: 1)
-            let mass = DimensionalExponents(mass: 1)
-
-            let result = energy - mass
-            #expect(result.length == 2)
-            #expect(result.time == -2)
-            #expect(result.mass == 0)
-        }
-
-        @Test("Multiplication")
-        func multiplication() {
-            let length = DimensionalExponents(length: 1)
-            let result = length * 2
-
-            #expect(result.length == 2)
-            #expect(result.time == 0)
-            #expect(result.mass == 0)
-        }
-
-        @Test("Dimensionless Check")
-        func isDimensionless() {
-            let dimensionless = DimensionalExponents()
-            #expect(dimensionless.isDimensionless)
-
-            let length = DimensionalExponents(length: 1)
-            #expect(!length.isDimensionless)
-        }
-
-        @Test("String Representation")
-        func description() {
-            let length = DimensionalExponents(length: 1)
-            #expect(length.description == "L^1")
-
-            let velocity = DimensionalExponents(length: 1, time: -1)
-            #expect(velocity.description == "L^1·T^-1")
-
-            let dimensionless = DimensionalExponents()
-            #expect(dimensionless.description == "dimensionless")
-        }
-    }
-
-    @Suite("DimensionalUnit")
-    struct DimensionalUnitTests {
-
-        @Test("Unit Type Dimensional Exponents")
-        func unitDimensions() {
-            // Length
-            #expect(UnitLength.dimensions == DimensionalExponents(length: 1))
-
-            // Area
-            #expect(UnitArea.dimensions == DimensionalExponents(length: 2))
-
-            // Speed
-            #expect(UnitSpeed.dimensions == DimensionalExponents(length: 1, time: -1))
-
-            // Energy
-            #expect(UnitEnergy.dimensions == DimensionalExponents(length: 2, time: -2, mass: 1))
-        }
-    }
-
-    @Suite("DimensionalMeasurement")
-    struct DimensionalMeasurementTests {
+    @Suite("Core Operations")
+    struct CoreOperationTests {
 
         @Test("Initialization")
         func initialization() {
@@ -294,20 +200,184 @@ struct DimensionalSystemTests {
             #expect(dict[length] == "Length measurement")
         }
 
-        @Test("Comparable Implementation")
-        func comparable() {
-            // Create measurements
+        @Test("Safe Comparison - Same Dimensions")
+        func safeComparisonSameDimensions() {
             let length1 = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
             let length2 = DimensionalMeasurement(value: 20.0, dimensions: DimensionalExponents(length: 1))
 
-            // Test comparison
-            #expect(length1 < length2)
-            #expect(length2 > length1)
+            #expect(length1.isLessThan(length2) == true)
+            #expect(length2.isLessThan(length1) == false)
+            #expect(length2.isGreaterThan(length1) == true)
+            #expect(length1.isGreaterThan(length2) == false)
+        }
 
-            // Sort array
-            let unsorted = [length2, length1]
-            let sorted = unsorted.sorted()
-            #expect(sorted == [length1, length2])
+        @Test("Safe Comparison - Different Dimensions Returns Nil")
+        func safeComparisonDifferentDimensions() {
+            let length = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            let time = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(time: 1))
+
+            #expect(length.isLessThan(time) == nil)
+            #expect(length.isGreaterThan(time) == nil)
+        }
+
+        @Test("CustomStringConvertible - DimensionalMeasurement")
+        func dimensionalMeasurementDescription() {
+            let length = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            #expect("\(length)" == "10.0 [L^1]")
+
+            let dimensionless = DimensionalMeasurement.dimensionless(2.5)
+            #expect("\(dimensionless)" == "2.5 [dimensionless]")
+        }
+    }
+
+    @Suite("Scalar Arithmetic")
+    struct ScalarArithmeticTests {
+
+        @Test("Multiply by scalar")
+        func multiplyByScalar() {
+            let length = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+
+            let doubled = length * 2.0
+            #expect(doubled.value == 20.0)
+            #expect(doubled.dimensions == DimensionalExponents(length: 1))
+
+            let prefixed = 3.0 * length
+            #expect(prefixed.value == 30.0)
+            #expect(prefixed.dimensions == DimensionalExponents(length: 1))
+        }
+
+        @Test("Divide by scalar")
+        func divideByScalar() {
+            let length = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+
+            let halved = length / 2.0
+            #expect(halved.value == 5.0)
+            #expect(halved.dimensions == DimensionalExponents(length: 1))
+        }
+
+        @Test("Kinetic energy with scalar multiplication")
+        func kineticEnergyWithScalar() {
+            let mass = Measurement(value: 2.0, unit: UnitMass.kilograms)
+            let velocity = Measurement(value: 10.0, unit: UnitSpeed.metersPerSecond)
+
+            let kineticEnergy = 0.5 * DimensionalMeasurement(mass) * DimensionalMeasurement(velocity).power(2)
+
+            #expect(kineticEnergy.dimensions == UnitEnergy.dimensions)
+            #expect(abs(kineticEnergy.value - 100.0) < 0.1)
+        }
+    }
+
+    @Suite("Addition and Subtraction")
+    struct AdditionSubtractionTests {
+
+        @Test("Add same-dimension measurements")
+        func addSameDimension() {
+            let a = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            let b = DimensionalMeasurement(value: 5.0, dimensions: DimensionalExponents(length: 1))
+
+            let sum = a + b
+            #expect(sum.value == 15.0)
+            #expect(sum.dimensions == DimensionalExponents(length: 1))
+        }
+
+        @Test("Subtract same-dimension measurements")
+        func subtractSameDimension() {
+            let a = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            let b = DimensionalMeasurement(value: 3.0, dimensions: DimensionalExponents(length: 1))
+
+            let diff = a - b
+            #expect(diff.value == 7.0)
+            #expect(diff.dimensions == DimensionalExponents(length: 1))
+        }
+
+        @Test("Unary negation")
+        func unaryNegation() {
+            let length = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+
+            let negated = -length
+            #expect(negated.value == -10.0)
+            #expect(negated.dimensions == DimensionalExponents(length: 1))
+        }
+    }
+
+    @Suite("Edge Cases")
+    struct EdgeCaseTests {
+
+        @Test("Division by zero produces infinity")
+        func divisionByZero() {
+            let length = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            let zero = DimensionalMeasurement(value: 0.0, dimensions: DimensionalExponents(time: 1))
+
+            let result = length / zero
+            #expect(result.value.isInfinite)
+        }
+
+        @Test("Very large values")
+        func veryLargeValues() {
+            let big = DimensionalMeasurement(value: 1e100, dimensions: DimensionalExponents(length: 1))
+            let small = DimensionalMeasurement(value: 1e-100, dimensions: DimensionalExponents(length: 1))
+
+            let product = big * small
+            #expect(product.dimensions == DimensionalExponents(length: 2))
+            #expect(product.value == 1.0)
+        }
+
+        @Test("Negative value square root returns NaN value")
+        func negativeSquareRoot() {
+            let area = DimensionalMeasurement(value: -4.0, dimensions: DimensionalExponents(length: 2))
+            let result = area.squareRoot()
+            // squareRoot of negative number: exponents are valid but value is NaN
+            #expect(result != nil)
+            #expect(result!.value.isNaN)
+        }
+
+        @Test("Power with zero exponent gives dimensionless")
+        func powerZero() {
+            let length = DimensionalMeasurement(value: 5.0, dimensions: DimensionalExponents(length: 1))
+            let result = length.power(0)
+
+            #expect(result.value == 1.0)
+            #expect(result.dimensions.isDimensionless)
+        }
+
+        @Test("Measurement dimensionalMeasurement extension property")
+        func dimensionalMeasurementExtension() {
+            let speed = Measurement(value: 60.0, unit: UnitSpeed.kilometersPerHour)
+            let dimensional = speed.dimensionalMeasurement
+
+            #expect(dimensional.dimensions == UnitSpeed.dimensions)
+            let expectedBaseValue = speed.converted(to: .metersPerSecond).value
+            #expect(abs(dimensional.value - expectedBaseValue) < 1e-10)
+        }
+
+        @Test("Hashable contract: equal values produce equal hashes")
+        func hashableContract() {
+            let a = DimensionalMeasurement(value: 1.0, dimensions: DimensionalExponents(length: 1))
+            let b = DimensionalMeasurement(value: 1.0 + 1e-12, dimensions: DimensionalExponents(length: 1))
+
+            // These should be equal per epsilon comparison
+            #expect(a == b)
+            // And must produce the same hash
+            #expect(a.hashValue == b.hashValue)
+        }
+
+        @Test("Sendable conformance")
+        func sendable() {
+            let measurement = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            let exponents = DimensionalExponents(length: 1)
+
+            // Verify these can be sent across concurrency boundaries
+            let _: any Sendable = measurement
+            let _: any Sendable = exponents
+        }
+
+        @Test("UnitDispersion is dimensionless")
+        func unitDispersionDimensionless() {
+            let dispersion = DimensionalMeasurement(value: 1.0, dimensions: DimensionalExponents())
+            #expect(dispersion.asDispersion != nil)
+
+            // Dispersion should be dimensionless, not length^-1
+            #expect(UnitDispersion.dimensions.isDimensionless)
         }
     }
 }
