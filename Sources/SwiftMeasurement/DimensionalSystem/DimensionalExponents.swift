@@ -1,7 +1,7 @@
 import Foundation
 
 /// Represents dimensional exponents for physical quantities based on SI units
-public struct DimensionalExponents: Equatable, Hashable {
+public struct DimensionalExponents: Equatable, Hashable, CustomStringConvertible, Sendable {
     // Base SI dimensions
     public var length: Int       // L (meter)
     public var time: Int         // T (second)

@@ -1,12 +1,15 @@
 import Foundation
 
 /// A type-erased measurement that can be converted to a specific unit type
-public struct DimensionalMeasurement: Equatable, Hashable, Comparable {
+public struct DimensionalMeasurement: Equatable, Hashable, CustomStringConvertible, Sendable {
     /// The value of the quantity in base units
     public let value: Double
 
     /// The dimensional signature of the quantity
     public let dimensions: DimensionalExponents
+
+    /// Tolerance for floating-point comparison in == and hash(into:)
+    private static let epsilon: Double = 1e-10
 
     /// Initialize with a value and dimension exponents
     public init(value: Double, dimensions: DimensionalExponents) {
@@ -36,6 +39,40 @@ public struct DimensionalMeasurement: Equatable, Hashable, Comparable {
             value: lhs.value / rhs.value,
             dimensions: lhs.dimensions - rhs.dimensions
         )
+    }
+
+    /// Multiply by a scalar
+    public static func * (lhs: DimensionalMeasurement, rhs: Double) -> DimensionalMeasurement {
+        return DimensionalMeasurement(value: lhs.value * rhs, dimensions: lhs.dimensions)
+    }
+
+    /// Multiply a scalar by a measurement
+    public static func * (lhs: Double, rhs: DimensionalMeasurement) -> DimensionalMeasurement {
+        return DimensionalMeasurement(value: lhs * rhs.value, dimensions: rhs.dimensions)
+    }
+
+    /// Divide by a scalar
+    public static func / (lhs: DimensionalMeasurement, rhs: Double) -> DimensionalMeasurement {
+        return DimensionalMeasurement(value: lhs.value / rhs, dimensions: lhs.dimensions)
+    }
+
+    /// Add two measurements with the same dimensions.
+    /// Traps if dimensions don't match.
+    public static func + (lhs: DimensionalMeasurement, rhs: DimensionalMeasurement) -> DimensionalMeasurement {
+        precondition(lhs.dimensions == rhs.dimensions, "Cannot add measurements with different dimensions: \(lhs.dimensions) vs \(rhs.dimensions)")
+        return DimensionalMeasurement(value: lhs.value + rhs.value, dimensions: lhs.dimensions)
+    }
+
+    /// Subtract two measurements with the same dimensions.
+    /// Traps if dimensions don't match.
+    public static func - (lhs: DimensionalMeasurement, rhs: DimensionalMeasurement) -> DimensionalMeasurement {
+        precondition(lhs.dimensions == rhs.dimensions, "Cannot subtract measurements with different dimensions: \(lhs.dimensions) vs \(rhs.dimensions)")
+        return DimensionalMeasurement(value: lhs.value - rhs.value, dimensions: lhs.dimensions)
+    }
+
+    /// Negate a measurement
+    public static prefix func - (measurement: DimensionalMeasurement) -> DimensionalMeasurement {
+        return DimensionalMeasurement(value: -measurement.value, dimensions: measurement.dimensions)
     }
 
     /// Raise to a power
@@ -96,26 +133,42 @@ public struct DimensionalMeasurement: Equatable, Hashable, Comparable {
         }
 
         // Then check if values are equal (using some epsilon for floating point comparison)
-        let epsilon = 1e-10
-        return abs(lhs.value - rhs.value) < epsilon
+        return abs(lhs.value - rhs.value) < Self.epsilon
     }
 
     // MARK: - Hashable Protocol Implementation
 
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(value)
+        // Round to match the epsilon used in == so that
+        // a == b always implies a.hashValue == b.hashValue.
+        hasher.combine((value / Self.epsilon).rounded())
         hasher.combine(dimensions)
     }
 
-    // MARK: - Comparable Protocol Implementation
+    // MARK: - Safe Comparison
 
-    public static func < (lhs: DimensionalMeasurement, rhs: DimensionalMeasurement) -> Bool {
-        // Can only compare measurements with the same dimensions
-        guard lhs.dimensions == rhs.dimensions else {
-            fatalError("Cannot compare measurements with different dimensions")
+    /// Compare two measurements with the same dimensions.
+    /// Returns `nil` if the dimensions don't match.
+    public func isLessThan(_ other: DimensionalMeasurement) -> Bool? {
+        guard dimensions == other.dimensions else {
+            return nil
         }
+        return value < other.value
+    }
 
-        return lhs.value < rhs.value
+    /// Compare two measurements with the same dimensions.
+    /// Returns `nil` if the dimensions don't match.
+    public func isGreaterThan(_ other: DimensionalMeasurement) -> Bool? {
+        guard dimensions == other.dimensions else {
+            return nil
+        }
+        return value > other.value
+    }
+
+    // MARK: - CustomStringConvertible
+
+    public var description: String {
+        return "\(value) [\(dimensions)]"
     }
 
     // MARK: - Convenience Type Conversions
