@@ -1,15 +1,15 @@
 import Foundation
 
 /// Represents dimensional exponents for physical quantities based on SI units
-public struct DimensionalExponents: Equatable, Hashable, CustomStringConvertible, Sendable {
+public struct DimensionalExponents: Equatable, Hashable, CustomStringConvertible, CustomDebugStringConvertible, Sendable {
     // Base SI dimensions
-    public var length: Int       // L (meter)
-    public var time: Int         // T (second)
-    public var mass: Int         // M (kilogram)
-    public var current: Int      // I (ampere)
-    public var temperature: Int  // Θ (kelvin)
-    public var amount: Int       // N (mole)
-    public var luminosity: Int   // J (candela)
+    public let length: Int       // L (meter)
+    public let time: Int         // T (second)
+    public let mass: Int         // M (kilogram)
+    public let current: Int      // I (ampere)
+    public let temperature: Int  // Θ (kelvin)
+    public let amount: Int       // N (mole)
+    public let luminosity: Int   // J (candela)
 
     public init(
         length: Int = 0,
@@ -88,4 +88,31 @@ public struct DimensionalExponents: Equatable, Hashable, CustomStringConvertible
 
         return components.isEmpty ? "dimensionless" : components.joined(separator: "·")
     }
+
+    // Debug representation
+    public var debugDescription: String {
+        return "DimensionalExponents(length: \(length), time: \(time), mass: \(mass), current: \(current), temperature: \(temperature), amount: \(amount), luminosity: \(luminosity))"
+    }
+
+    // MARK: - Named Dimension Presets
+
+    public static let dimensionless = DimensionalExponents()
+    public static let length = DimensionalExponents(length: 1)
+    public static let area = DimensionalExponents(length: 2)
+    public static let volume = DimensionalExponents(length: 3)
+    public static let time = DimensionalExponents(time: 1)
+    public static let frequency = DimensionalExponents(time: -1)
+    public static let mass = DimensionalExponents(mass: 1)
+    public static let speed = DimensionalExponents(length: 1, time: -1)
+    public static let acceleration = DimensionalExponents(length: 1, time: -2)
+    public static let force = DimensionalExponents(length: 1, time: -2, mass: 1)
+    public static let energy = DimensionalExponents(length: 2, time: -2, mass: 1)
+    public static let power = DimensionalExponents(length: 2, time: -3, mass: 1)
+    public static let pressure = DimensionalExponents(length: -1, time: -2, mass: 1)
+    public static let electricCurrent = DimensionalExponents(current: 1)
+    public static let electricCharge = DimensionalExponents(time: 1, current: 1)
+    public static let voltage = DimensionalExponents(length: 2, time: -3, mass: 1, current: -1)
+    public static let electricResistance = DimensionalExponents(length: 2, time: -3, mass: 1, current: -2)
+    public static let temperature = DimensionalExponents(temperature: 1)
+    public static let concentrationMass = DimensionalExponents(length: -3, mass: 1)
 }

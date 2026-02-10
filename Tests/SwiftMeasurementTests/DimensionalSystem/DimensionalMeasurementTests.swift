@@ -300,6 +300,187 @@ struct DimensionalMeasurementTests {
         }
     }
 
+    @Suite("Reciprocal Operator")
+    struct ReciprocalOperatorTests {
+
+        @Test("Scalar divided by measurement gives reciprocal dimensions")
+        func scalarDividedByMeasurement() {
+            let frequency = DimensionalMeasurement(value: 2.0, dimensions: DimensionalExponents(time: -1))
+            let result = 1.0 / frequency
+
+            #expect(result.value == 0.5)
+            #expect(result.dimensions == DimensionalExponents(time: 1))
+        }
+
+        @Test("1/frequency gives duration dimensions")
+        func reciprocalFrequencyGivesDuration() {
+            let freq = DimensionalMeasurement(Measurement(value: 5.0, unit: UnitFrequency.hertz))
+            let period = 1.0 / freq
+
+            #expect(period.dimensions == UnitDuration.dimensions)
+            #expect(abs(period.value - 0.2) < 1e-10)
+        }
+
+        @Test("Reciprocal in physics: period from frequency")
+        func periodFromFrequency() {
+            let freq = DimensionalMeasurement(Measurement(value: 440.0, unit: UnitFrequency.hertz))
+            let period = 1.0 / freq
+            let durationSeconds = period.asDuration?.converted(to: .seconds)
+
+            #expect(durationSeconds != nil)
+            #expect(abs(durationSeconds!.value - 1.0 / 440.0) < 1e-10)
+        }
+    }
+
+    @Suite("Comparison Extensions")
+    struct ComparisonExtensionTests {
+
+        @Test("isLessThanOrEqual - same dimensions")
+        func lessThanOrEqualSameDimensions() {
+            let a = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            let b = DimensionalMeasurement(value: 20.0, dimensions: DimensionalExponents(length: 1))
+            let c = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+
+            #expect(a.isLessThanOrEqual(to: b) == true)
+            #expect(b.isLessThanOrEqual(to: a) == false)
+            #expect(a.isLessThanOrEqual(to: c) == true)
+        }
+
+        @Test("isGreaterThanOrEqual - same dimensions")
+        func greaterThanOrEqualSameDimensions() {
+            let a = DimensionalMeasurement(value: 20.0, dimensions: DimensionalExponents(length: 1))
+            let b = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            let c = DimensionalMeasurement(value: 20.0, dimensions: DimensionalExponents(length: 1))
+
+            #expect(a.isGreaterThanOrEqual(to: b) == true)
+            #expect(b.isGreaterThanOrEqual(to: a) == false)
+            #expect(a.isGreaterThanOrEqual(to: c) == true)
+        }
+
+        @Test("isLessThanOrEqual - different dimensions returns nil")
+        func lessThanOrEqualDifferentDimensions() {
+            let length = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            let time = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(time: 1))
+
+            #expect(length.isLessThanOrEqual(to: time) == nil)
+        }
+
+        @Test("isGreaterThanOrEqual - different dimensions returns nil")
+        func greaterThanOrEqualDifferentDimensions() {
+            let length = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            let time = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(time: 1))
+
+            #expect(length.isGreaterThanOrEqual(to: time) == nil)
+        }
+    }
+
+    @Suite("Magnitude")
+    struct MagnitudeTests {
+
+        @Test("Magnitude of positive value")
+        func magnitudePositive() {
+            let length = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            #expect(length.magnitude.value == 10.0)
+            #expect(length.magnitude.dimensions == DimensionalExponents(length: 1))
+        }
+
+        @Test("Magnitude of negative value")
+        func magnitudeNegative() {
+            let length = DimensionalMeasurement(value: -10.0, dimensions: DimensionalExponents(length: 1))
+            #expect(length.magnitude.value == 10.0)
+            #expect(length.magnitude.dimensions == DimensionalExponents(length: 1))
+        }
+
+        @Test("Magnitude of zero")
+        func magnitudeZero() {
+            let zero = DimensionalMeasurement(value: 0.0, dimensions: DimensionalExponents(length: 1))
+            #expect(zero.magnitude.value == 0.0)
+        }
+    }
+
+    @Suite("Compound Assignment")
+    struct CompoundAssignmentTests {
+
+        @Test("Multiply-assign by scalar")
+        func multiplyAssign() {
+            var length = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            length *= 3.0
+            #expect(length.value == 30.0)
+            #expect(length.dimensions == DimensionalExponents(length: 1))
+        }
+
+        @Test("Divide-assign by scalar")
+        func divideAssign() {
+            var length = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            length /= 2.0
+            #expect(length.value == 5.0)
+            #expect(length.dimensions == DimensionalExponents(length: 1))
+        }
+
+        @Test("Add-assign same dimensions")
+        func addAssign() {
+            var length = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            let extra = DimensionalMeasurement(value: 5.0, dimensions: DimensionalExponents(length: 1))
+            length += extra
+            #expect(length.value == 15.0)
+            #expect(length.dimensions == DimensionalExponents(length: 1))
+        }
+
+        @Test("Subtract-assign same dimensions")
+        func subtractAssign() {
+            var length = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            let sub = DimensionalMeasurement(value: 3.0, dimensions: DimensionalExponents(length: 1))
+            length -= sub
+            #expect(length.value == 7.0)
+            #expect(length.dimensions == DimensionalExponents(length: 1))
+        }
+    }
+
+    @Suite("Convert to Unit")
+    struct ConvertToUnitTests {
+
+        @Test("Convert to specific unit")
+        func convertToSpecificUnit() {
+            let distance = DimensionalMeasurement(value: 1000.0, dimensions: DimensionalExponents(length: 1))
+            let km = distance.convert(to: UnitLength.kilometers)
+
+            #expect(km != nil)
+            #expect(abs(km!.value - 1.0) < 1e-10)
+            #expect(km!.unit == UnitLength.kilometers)
+        }
+
+        @Test("Convert to incompatible unit returns nil")
+        func convertToIncompatibleUnit() {
+            let distance = DimensionalMeasurement(value: 1000.0, dimensions: DimensionalExponents(length: 1))
+            let result = distance.convert(to: UnitMass.kilograms)
+
+            #expect(result == nil)
+        }
+
+        @Test("Convert speed to km/h")
+        func convertSpeedToKmh() {
+            // 10 m/s
+            let speed = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1, time: -1))
+            let kmh = speed.convert(to: UnitSpeed.kilometersPerHour)
+
+            #expect(kmh != nil)
+            #expect(abs(kmh!.value - 36.0) < 0.01)
+        }
+    }
+
+    @Suite("Debug Description")
+    struct DebugDescriptionTests {
+
+        @Test("DimensionalMeasurement debug description")
+        func debugDescription() {
+            let length = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
+            let debug = String(reflecting: length)
+            #expect(debug.contains("DimensionalMeasurement"))
+            #expect(debug.contains("10.0"))
+            #expect(debug.contains("DimensionalExponents"))
+        }
+    }
+
     @Suite("Edge Cases")
     struct EdgeCaseTests {
 

@@ -75,4 +75,120 @@ struct DimensionalExponentsTests {
         let dimensionless = DimensionalExponents()
         #expect(dimensionless.description == "dimensionless")
     }
+
+    @Test("Debug Description")
+    func debugDescription() {
+        let energy = DimensionalExponents(length: 2, time: -2, mass: 1)
+        #expect(energy.debugDescription == "DimensionalExponents(length: 2, time: -2, mass: 1, current: 0, temperature: 0, amount: 0, luminosity: 0)")
+    }
+
+    @Test("Properties are immutable")
+    func propertiesAreImmutable() {
+        let dims = DimensionalExponents(length: 1)
+        // This test verifies the struct compiles with `let` properties.
+        // If properties were `var`, they would also be settable, but since
+        // we declared them as `let`, only init can set them.
+        #expect(dims.length == 1)
+        #expect(dims.time == 0)
+    }
+
+    @Suite("Named Presets")
+    struct NamedPresetTests {
+
+        @Test("Dimensionless preset")
+        func dimensionlessPreset() {
+            #expect(DimensionalExponents.dimensionless == DimensionalExponents())
+            #expect(DimensionalExponents.dimensionless.isDimensionless)
+        }
+
+        @Test("Length preset matches UnitLength")
+        func lengthPreset() {
+            #expect(DimensionalExponents.length == UnitLength.dimensions)
+        }
+
+        @Test("Area preset matches UnitArea")
+        func areaPreset() {
+            #expect(DimensionalExponents.area == UnitArea.dimensions)
+        }
+
+        @Test("Volume preset matches UnitVolume")
+        func volumePreset() {
+            #expect(DimensionalExponents.volume == UnitVolume.dimensions)
+        }
+
+        @Test("Time preset matches UnitDuration")
+        func timePreset() {
+            #expect(DimensionalExponents.time == UnitDuration.dimensions)
+        }
+
+        @Test("Frequency preset matches UnitFrequency")
+        func frequencyPreset() {
+            #expect(DimensionalExponents.frequency == UnitFrequency.dimensions)
+        }
+
+        @Test("Mass preset matches UnitMass")
+        func massPreset() {
+            #expect(DimensionalExponents.mass == UnitMass.dimensions)
+        }
+
+        @Test("Speed preset matches UnitSpeed")
+        func speedPreset() {
+            #expect(DimensionalExponents.speed == UnitSpeed.dimensions)
+        }
+
+        @Test("Acceleration preset matches UnitAcceleration")
+        func accelerationPreset() {
+            #expect(DimensionalExponents.acceleration == UnitAcceleration.dimensions)
+        }
+
+        @Test("Force preset is M·L·T⁻²")
+        func forcePreset() {
+            #expect(DimensionalExponents.force == DimensionalExponents(length: 1, time: -2, mass: 1))
+        }
+
+        @Test("Energy preset matches UnitEnergy")
+        func energyPreset() {
+            #expect(DimensionalExponents.energy == UnitEnergy.dimensions)
+        }
+
+        @Test("Power preset matches UnitPower")
+        func powerPreset() {
+            #expect(DimensionalExponents.power == UnitPower.dimensions)
+        }
+
+        @Test("Pressure preset matches UnitPressure")
+        func pressurePreset() {
+            #expect(DimensionalExponents.pressure == UnitPressure.dimensions)
+        }
+
+        @Test("Electric current preset matches UnitElectricCurrent")
+        func electricCurrentPreset() {
+            #expect(DimensionalExponents.electricCurrent == UnitElectricCurrent.dimensions)
+        }
+
+        @Test("Electric charge preset matches UnitElectricCharge")
+        func electricChargePreset() {
+            #expect(DimensionalExponents.electricCharge == UnitElectricCharge.dimensions)
+        }
+
+        @Test("Voltage preset matches UnitElectricPotentialDifference")
+        func voltagePreset() {
+            #expect(DimensionalExponents.voltage == UnitElectricPotentialDifference.dimensions)
+        }
+
+        @Test("Electric resistance preset matches UnitElectricResistance")
+        func electricResistancePreset() {
+            #expect(DimensionalExponents.electricResistance == UnitElectricResistance.dimensions)
+        }
+
+        @Test("Temperature preset matches UnitTemperature")
+        func temperaturePreset() {
+            #expect(DimensionalExponents.temperature == UnitTemperature.dimensions)
+        }
+
+        @Test("Concentration mass preset matches UnitConcentrationMass")
+        func concentrationMassPreset() {
+            #expect(DimensionalExponents.concentrationMass == UnitConcentrationMass.dimensions)
+        }
+    }
 }

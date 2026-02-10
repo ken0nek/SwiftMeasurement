@@ -1,7 +1,7 @@
 import Foundation
 
 /// A type-erased measurement that can be converted to a specific unit type
-public struct DimensionalMeasurement: Equatable, Hashable, CustomStringConvertible, Sendable {
+public struct DimensionalMeasurement: Equatable, Hashable, CustomStringConvertible, CustomDebugStringConvertible, Sendable {
     /// The value of the quantity in base units
     public let value: Double
 
@@ -54,6 +54,11 @@ public struct DimensionalMeasurement: Equatable, Hashable, CustomStringConvertib
     /// Divide by a scalar
     public static func / (lhs: DimensionalMeasurement, rhs: Double) -> DimensionalMeasurement {
         return DimensionalMeasurement(value: lhs.value / rhs, dimensions: lhs.dimensions)
+    }
+
+    /// Divide a scalar by a measurement (reciprocal)
+    public static func / (lhs: Double, rhs: DimensionalMeasurement) -> DimensionalMeasurement {
+        return DimensionalMeasurement(value: lhs / rhs.value, dimensions: DimensionalExponents() - rhs.dimensions)
     }
 
     /// Add two measurements with the same dimensions.
@@ -119,6 +124,15 @@ public struct DimensionalMeasurement: Equatable, Hashable, CustomStringConvertib
         return Measurement(value: value, unit: T.baseUnit())
     }
 
+    /// Convert directly to a specific unit (e.g., `.kilometers`).
+    /// Returns `nil` if the dimensions don't match.
+    public func convert<T: Dimension & DimensionalUnit>(to unit: T) -> Measurement<T>? {
+        guard T.dimensions == dimensions else {
+            return nil
+        }
+        return Measurement(value: value, unit: T.baseUnit()).converted(to: unit)
+    }
+
     /// Create dimensionless quantity (scalar)
     public static func dimensionless(_ value: Double) -> DimensionalMeasurement {
         return DimensionalMeasurement(value: value, dimensions: DimensionalExponents())
@@ -165,10 +179,65 @@ public struct DimensionalMeasurement: Equatable, Hashable, CustomStringConvertib
         return value > other.value
     }
 
+    /// Compare two measurements with the same dimensions.
+    /// Returns `nil` if the dimensions don't match.
+    public func isLessThanOrEqual(to other: DimensionalMeasurement) -> Bool? {
+        guard dimensions == other.dimensions else {
+            return nil
+        }
+        return value <= other.value
+    }
+
+    /// Compare two measurements with the same dimensions.
+    /// Returns `nil` if the dimensions don't match.
+    public func isGreaterThanOrEqual(to other: DimensionalMeasurement) -> Bool? {
+        guard dimensions == other.dimensions else {
+            return nil
+        }
+        return value >= other.value
+    }
+
+    // MARK: - Magnitude
+
+    /// The absolute value of this measurement, preserving dimensions.
+    public var magnitude: DimensionalMeasurement {
+        return DimensionalMeasurement(value: abs(value), dimensions: dimensions)
+    }
+
+    // MARK: - Compound Assignment Operators
+
+    /// Multiply-assign by a scalar
+    public static func *= (lhs: inout DimensionalMeasurement, rhs: Double) {
+        lhs = lhs * rhs
+    }
+
+    /// Divide-assign by a scalar
+    public static func /= (lhs: inout DimensionalMeasurement, rhs: Double) {
+        lhs = lhs / rhs
+    }
+
+    /// Add-assign a same-dimension measurement.
+    /// Traps if dimensions don't match.
+    public static func += (lhs: inout DimensionalMeasurement, rhs: DimensionalMeasurement) {
+        lhs = lhs + rhs
+    }
+
+    /// Subtract-assign a same-dimension measurement.
+    /// Traps if dimensions don't match.
+    public static func -= (lhs: inout DimensionalMeasurement, rhs: DimensionalMeasurement) {
+        lhs = lhs - rhs
+    }
+
     // MARK: - CustomStringConvertible
 
     public var description: String {
         return "\(value) [\(dimensions)]"
+    }
+
+    // MARK: - CustomDebugStringConvertible
+
+    public var debugDescription: String {
+        return "DimensionalMeasurement(value: \(value), dimensions: \(dimensions.debugDescription))"
     }
 
     // MARK: - Convenience Type Conversions
