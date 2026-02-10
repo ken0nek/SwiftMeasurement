@@ -35,7 +35,7 @@ Measurement<UnitLength>(value: 3, unit: .kilometers) + Measurement<UnitLength>(v
 // Speed × Duration = Length
 let speed = 60.0.kilometersPerHour
 let time = 2.5.hours
-let distance = speed * time  // returns an AnyMeasurement
+let distance = speed * time  // returns a DimensionalMeasurement
 
 // Convert to a specific measurement type
 if let distanceInKm = distance.asLength?.converted(to: .kilometers) {
