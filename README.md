@@ -1,69 +1,79 @@
 # SwiftMeasurement
 
-The best way to deal with Measurements and Units in Swift.
+Fluent syntax and dimensional analysis for Foundation's `Measurement` types.
 
-Measurements and Units are introduced in iOS 10.
-* [Measurements and Units - WWDC 2016 - Videos - Apple Developer](https://developer.apple.com/videos/play/wwdc2016/238/)
+![Swift 6.0](https://img.shields.io/badge/Swift-6.0-orange)
+![Platforms](https://img.shields.io/badge/Platforms-iOS%2017+%20|%20macOS%2014+%20|%20tvOS%2017+%20|%20watchOS%2010+%20|%20visionOS%201+-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-## Features
+## Quick Look
 
-- Support for all units declared in the Foundation framework
-- Easy conversion between different units
-- Simple and intuitive API for working with measurements
-- **Dimensional Analysis System** for type-safe calculations between different units
-- **Automatic dimensional tracking** for operations like speed × time = distance
-- **Math operations** for physical quantities with different dimensions
-- **Smart conversion system** that understands physical relationships
-
-## Usage
-
-### Basic Operations
-
-- before
 ```swift
-Measurement<UnitLength>(value: 3, unit: .kilometers) + Measurement<UnitLength>(value: 4, unit: .kilometers)
+// Foundation
+Measurement<UnitLength>(value: 42, unit: .kilometers)
+
+// SwiftMeasurement
+42.kilometers
 ```
 
-- after
+Works with `Int`, `Double`, and `Float` across all 22 Foundation unit types.
+
+## Dimensional Analysis
+
+`DimensionalMeasurement` tracks SI dimension exponents automatically, so you can multiply, divide, and root physical quantities across different unit types.
+
 ```swift
-3.kilometers + 4.kilometers
-```
-
-### Dimensional Calculations
-
-```swift
-// Speed × Duration = Length
-let speed = 60.0.kilometersPerHour
-let time = 2.5.hours
-let distance = speed * time  // returns a DimensionalMeasurement
-
-// Convert to a specific measurement type
-if let distanceInKm = distance.asLength?.converted(to: .kilometers) {
-    print("Distance: \(distanceInKm)")  // 150.0 km
-}
+// Speed × Time = Distance
+let distance = 60.0.kilometersPerHour * 2.hours
+distance.asLength?.converted(to: .kilometers)  // 120.0 km
 
 // Length × Length = Area
-let length = 10.0.meters
-let width = 5.0.meters
-let area = length * width
+let area = 10.0.meters * 5.0.meters
+area.asArea?.converted(to: .squareMeters)  // 50.0 m²
 
-if let areaInSqM = area.asArea?.converted(to: .squareMeters) {
-    print("Area: \(areaInSqM)")  // 50.0 m²
-}
+// Square root
+area.squareRoot()?.asLength  // back to meters
 ```
+
+Typed accessors (`.asLength`, `.asArea`, `.asSpeed`, `.asEnergy`, etc.) convert back to `Measurement<T>` — returns `nil` if the dimensions don't match.
+
+## Supported Units
+
+<details>
+<summary>All 22 unit types with example properties</summary>
+
+| Unit Type | Example Properties |
+|---|---|
+| `UnitAcceleration` | `.metersPerSecondSquared`, `.gravity` |
+| `UnitAngle` | `.degrees`, `.radians` |
+| `UnitArea` | `.squareMeters`, `.squareKilometers`, `.hectares` |
+| `UnitConcentrationMass` | `.gramsPerLiter`, `.milligramsPerDeciliter` |
+| `UnitDispersion` | `.partsPerMillion` |
+| `UnitDuration` | `.hours`, `.minutes`, `.seconds` |
+| `UnitElectricCharge` | `.coulombs`, `.ampereHours` |
+| `UnitElectricCurrent` | `.amperes`, `.milliamperes` |
+| `UnitElectricPotentialDifference` | `.volts`, `.millivolts` |
+| `UnitElectricResistance` | `.ohms`, `.kiloohms` |
+| `UnitEnergy` | `.joules`, `.kilocalories`, `.kilowattHours` |
+| `UnitFrequency` | `.hertz`, `.gigahertz` |
+| `UnitFuelEfficiency` | `.litersPer100Kilometers`, `.milesPerGallon` |
+| `UnitIlluminance` | `.lux` |
+| `UnitInformationStorage` | `.bytes`, `.gigabytes`, `.terabytes` |
+| `UnitLength` | `.kilometers`, `.meters`, `.miles`, `.feet` |
+| `UnitMass` | `.kilograms`, `.grams`, `.pounds` |
+| `UnitPower` | `.watts`, `.kilowatts`, `.horsepower` |
+| `UnitPressure` | `.newtonsPerMetersSquared`, `.bars` |
+| `UnitSpeed` | `.kilometersPerHour`, `.milesPerHour`, `.knots` |
+| `UnitTemperature` | `.celsius`, `.fahrenheit`, `.kelvin` |
+| `UnitVolume` | `.liters`, `.milliliters`, `.gallons` |
+
+</details>
 
 ## Installation
 
-### Swift Package Manager (Recommended)
+**Xcode:** File > Add Package Dependencies > enter `https://github.com/ken0nek/SwiftMeasurement.git`
 
-The [Swift Package Manager](https://swift.org/package-manager/) is the recommended way to add SwiftMeasurement to your project.
-
-1. In Xcode, select File > Add Package Dependencies...
-2. Enter the repository URL: `https://github.com/ken0nek/SwiftMeasurement.git`
-3. Select "Up to Next Major Version" with the current version
-4. Click "Add Package"
-
-You can also add SwiftMeasurement as a dependency directly in your `Package.swift` file:
+**Package.swift:**
 
 ```swift
 dependencies: [
@@ -71,23 +81,6 @@ dependencies: [
 ]
 ```
 
-Then add the dependency to your target:
-
-```swift
-.target(
-    name: "YourTarget",
-    dependencies: ["SwiftMeasurement"]
-)
-```
-
-### Swift Package Manager (Command Line)
-
-You can also add SwiftMeasurement using the Swift Package Manager command line:
-
-```bash
-swift package add-dependency https://github.com/ken0nek/SwiftMeasurement.git
-```
-
 ## License
 
-SwiftMeasurement is available under the MIT license. See the LICENSE file for more info.
+MIT License. See [LICENSE](LICENSE) for details.
