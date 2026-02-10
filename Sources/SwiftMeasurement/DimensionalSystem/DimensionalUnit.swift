@@ -43,13 +43,6 @@ extension UnitAcceleration: DimensionalUnit {
     }
 }
 
-// Dispersion - [L⁻¹]
-extension UnitDispersion: DimensionalUnit {
-    public static var dimensions: DimensionalExponents {
-        return DimensionalExponents(length: -1)
-    }
-}
-
 // MARK: - Time-Based Units
 
 // Duration - [T]
@@ -162,6 +155,13 @@ extension UnitAngle: DimensionalUnit {
 
 // Information Storage - [dimensionless]
 extension UnitInformationStorage: DimensionalUnit {
+    public static var dimensions: DimensionalExponents {
+        return DimensionalExponents()
+    }
+}
+
+// Dispersion - [dimensionless]
+extension UnitDispersion: DimensionalUnit {
     public static var dimensions: DimensionalExponents {
         return DimensionalExponents()
     }
