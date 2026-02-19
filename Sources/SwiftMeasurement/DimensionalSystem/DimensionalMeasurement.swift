@@ -107,7 +107,7 @@ public struct DimensionalMeasurement: Equatable, Hashable, CustomStringConvertib
         }
 
         return DimensionalMeasurement(
-            value: Darwin.sqrt(value),
+            value: value.squareRoot(),
             dimensions: halfExponents
         )
     }

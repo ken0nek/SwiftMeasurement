@@ -3,8 +3,9 @@
 Fluent syntax and dimensional analysis for Foundation's `Measurement` types.
 
 ![Swift 6.0](https://img.shields.io/badge/Swift-6.0-orange)
-![Platforms](https://img.shields.io/badge/Platforms-iOS%2017+%20|%20macOS%2014+%20|%20tvOS%2017+%20|%20watchOS%2010+%20|%20visionOS%201+-blue)
+![Platforms](https://img.shields.io/badge/Platforms-iOS%2017+%20|%20macOS%2014+%20|%20tvOS%2017+%20|%20watchOS%2010+%20|%20visionOS%201+%20|%20Linux-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
+![CI](https://github.com/ken0nek/SwiftMeasurement/actions/workflows/ci.yml/badge.svg)
 
 ## Quick Look
 
@@ -77,7 +78,7 @@ Typed accessors (`.asLength`, `.asArea`, `.asSpeed`, `.asEnergy`, etc.) convert 
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/ken0nek/SwiftMeasurement.git", from: "2.0.0")
+    .package(url: "https://github.com/ken0nek/SwiftMeasurement.git", from: "2.2.0")
 ]
 ```
 
