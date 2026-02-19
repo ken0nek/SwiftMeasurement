@@ -1,5 +1,11 @@
 import Foundation
 
+#if !canImport(Darwin)
+extension UnitFrequency {
+    public static let framesPerSecond = UnitFrequency(symbol: "fps", converter: UnitConverterLinear(coefficient: 1.0))
+}
+#endif
+
 public extension MeasurementConvertible {
 
     var terahertz: Measurement<UnitFrequency> {
