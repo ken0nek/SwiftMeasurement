@@ -1,6 +1,10 @@
 import Foundation
 
-#if !canImport(Darwin)
+// `UnitFrequency.framesPerSecond` was added to swift-corelibs-foundation in
+// Swift 6.4 (swiftlang/swift-corelibs-foundation#5414). This shim provides it on
+// non-Darwin platforms for older toolchains. Remove once the minimum supported
+// toolchain is Swift 6.4+.
+#if !canImport(Darwin) && compiler(<6.4)
 extension UnitFrequency {
     public static let framesPerSecond = UnitFrequency(symbol: "fps", converter: UnitConverterLinear(coefficient: 1.0))
 }
