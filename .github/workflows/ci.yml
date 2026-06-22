@@ -12,8 +12,13 @@ jobs:
       matrix:
         include:
           - os: macos-latest
+          # swift:6.0 exercises the UnitFrequency.framesPerSecond shim
+          # (gated to compiler(<6.4)); swift:6.4 exercises the path where
+          # Foundation provides framesPerSecond natively and the shim is off.
           - os: ubuntu-latest
             container: swift:6.0
+          - os: ubuntu-latest
+            container: swift:6.4
     runs-on: ${{ matrix.os }}
     container: ${{ matrix.container }}
     steps:
