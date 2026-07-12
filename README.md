@@ -38,6 +38,14 @@ area.squareRoot()?.asLength  // back to meters
 
 Typed accessors (`.asLength`, `.asArea`, `.asSpeed`, `.asEnergy`, etc.) convert back to `Measurement<T>` — returns `nil` if the dimensions don't match.
 
+`DimensionalMeasurement` and `DimensionalExponents` both conform to `Codable`, so you can encode and decode them directly:
+
+```swift
+let distance = 60.0.kilometersPerHour * 2.hours
+let data = try JSONEncoder().encode(distance)
+let restored = try JSONDecoder().decode(DimensionalMeasurement.self, from: data)
+```
+
 ## Supported Units
 
 <details>
