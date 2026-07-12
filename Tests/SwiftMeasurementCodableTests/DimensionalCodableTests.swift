@@ -1,6 +1,7 @@
 import Foundation
 import Testing
-@testable import SwiftMeasurement
+import SwiftMeasurement
+import SwiftMeasurementCodable
 
 @Suite("Dimensional Codable")
 struct DimensionalCodableTests {

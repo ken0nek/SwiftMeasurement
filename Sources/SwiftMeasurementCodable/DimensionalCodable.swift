@@ -1,14 +1,19 @@
 import Foundation
+import SwiftMeasurement
 
 // MARK: - Codable Conformance
 
-// Plain, self-contained `Codable` conformance for the dimensional system types.
-// These conformances are deliberately independent: they encode and decode only
-// each type's stored properties, with no reliance on any other utilities in the
-// package. The layout mirrors the memberwise initializers so encoded values are
-// stable and human-readable.
+// `Codable` support for the dimensional system types, kept in a dedicated
+// module so the core `SwiftMeasurement` library stays independent of
+// serialization. Consumers opt in by depending on the `SwiftMeasurementCodable`
+// product.
+//
+// Because these conformances live outside the module that declares the types,
+// they cannot be synthesized and are marked `@retroactive`. Each conformance
+// encodes only the type's stored properties, mirroring the memberwise
+// initializers so payloads stay stable and human-readable.
 
-extension DimensionalExponents: Codable {
+extension DimensionalExponents: @retroactive Encodable, @retroactive Decodable {
     private enum CodingKeys: String, CodingKey {
         case length
         case time
@@ -44,7 +49,7 @@ extension DimensionalExponents: Codable {
     }
 }
 
-extension DimensionalMeasurement: Codable {
+extension DimensionalMeasurement: @retroactive Encodable, @retroactive Decodable {
     private enum CodingKeys: String, CodingKey {
         case value
         case dimensions

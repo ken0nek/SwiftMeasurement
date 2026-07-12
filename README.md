@@ -38,9 +38,20 @@ area.squareRoot()?.asLength  // back to meters
 
 Typed accessors (`.asLength`, `.asArea`, `.asSpeed`, `.asEnergy`, etc.) convert back to `Measurement<T>` — returns `nil` if the dimensions don't match.
 
-`DimensionalMeasurement` and `DimensionalExponents` both conform to `Codable`, so you can encode and decode them directly:
+## Codable
+
+`Codable` support ships as a separate `SwiftMeasurementCodable` product, so the core library stays free of serialization. Add the product only where you need it:
 
 ```swift
+.product(name: "SwiftMeasurementCodable", package: "SwiftMeasurement")
+```
+
+Importing it makes `DimensionalMeasurement` and `DimensionalExponents` `Codable`:
+
+```swift
+import SwiftMeasurement
+import SwiftMeasurementCodable
+
 let distance = 60.0.kilometersPerHour * 2.hours
 let data = try JSONEncoder().encode(distance)
 let restored = try JSONDecoder().decode(DimensionalMeasurement.self, from: data)
