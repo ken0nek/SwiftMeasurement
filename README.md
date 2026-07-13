@@ -92,8 +92,10 @@ let recipe = Recipe(
     flour: Measurement(value: 500, unit: .grams).codable,
     oven: Measurement(value: 220, unit: .celsius).codable
 )
-let data = try JSONEncoder().encode(recipe)
-// {"flour":{"value":500,"unit":"gram"},"oven":{"value":220,"unit":"celsius"}}
+let encoder = JSONEncoder()
+encoder.outputFormatting = [.sortedKeys]   // stable key order on every platform
+let data = try encoder.encode(recipe)
+// {"flour":{"unit":"gram","value":500},"oven":{"unit":"celsius","value":220}}
 
 let decoded = try JSONDecoder().decode(Recipe.self, from: data)
 decoded.flour.measurement.converted(to: .ounces)
