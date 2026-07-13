@@ -43,6 +43,6 @@ struct UnitLengthIdentifierTests {
 
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitLength.unit(forIdentifier: "no-such-unit") == nil)
-        #expect(UnitLength(symbol: "??").unitIdentifier == nil)
+        #expect(UnitLength(symbol: "??", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }

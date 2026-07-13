@@ -35,6 +35,6 @@ struct UnitInformationStorageIdentifierTests {
 
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitInformationStorage.unit(forIdentifier: "no-such-unit") == nil)
-        #expect(UnitInformationStorage(symbol: "??").unitIdentifier == nil)
+        #expect(UnitInformationStorage(symbol: "??", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }

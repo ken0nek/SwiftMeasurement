@@ -63,7 +63,7 @@ struct CodableMeasurementTests {
     }
 
     @Test func unmappedUnitThrowsEncodingError() {
-        let custom = Measurement(value: 1, unit: UnitMass(symbol: "scoop"))
+        let custom = Measurement(value: 1, unit: UnitMass(symbol: "scoop", converter: UnitConverterLinear(coefficient: 1)))
         #expect(throws: EncodingError.self) {
             _ = try sortedKeysEncoder.encode(CodableMeasurement(custom))
         }

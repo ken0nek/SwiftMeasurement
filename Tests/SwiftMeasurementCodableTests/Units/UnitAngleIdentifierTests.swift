@@ -29,6 +29,6 @@ struct UnitAngleIdentifierTests {
 
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitAngle.unit(forIdentifier: "no-such-unit") == nil)
-        #expect(UnitAngle(symbol: "??").unitIdentifier == nil)
+        #expect(UnitAngle(symbol: "??", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }

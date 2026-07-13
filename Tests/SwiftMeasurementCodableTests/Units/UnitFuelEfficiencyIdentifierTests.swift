@@ -27,6 +27,6 @@ struct UnitFuelEfficiencyIdentifierTests {
 
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitFuelEfficiency.unit(forIdentifier: "no-such-unit") == nil)
-        #expect(UnitFuelEfficiency(symbol: "??").unitIdentifier == nil)
+        #expect(UnitFuelEfficiency(symbol: "??", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }

@@ -27,6 +27,6 @@ struct UnitTemperatureIdentifierTests {
 
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitTemperature.unit(forIdentifier: "no-such-unit") == nil)
-        #expect(UnitTemperature(symbol: "??").unitIdentifier == nil)
+        #expect(UnitTemperature(symbol: "??", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }

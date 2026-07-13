@@ -28,6 +28,6 @@ struct UnitFrequencyIdentifierTests {
 
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitFrequency.unit(forIdentifier: "no-such-unit") == nil)
-        #expect(UnitFrequency(symbol: "??").unitIdentifier == nil)
+        #expect(UnitFrequency(symbol: "??", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }

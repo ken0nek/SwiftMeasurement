@@ -25,6 +25,6 @@ struct UnitIlluminanceIdentifierTests {
 
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitIlluminance.unit(forIdentifier: "no-such-unit") == nil)
-        #expect(UnitIlluminance(symbol: "??").unitIdentifier == nil)
+        #expect(UnitIlluminance(symbol: "??", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }

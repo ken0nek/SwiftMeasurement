@@ -30,6 +30,6 @@ struct UnitDurationIdentifierTests {
 
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitDuration.unit(forIdentifier: "no-such-unit") == nil)
-        #expect(UnitDuration(symbol: "??").unitIdentifier == nil)
+        #expect(UnitDuration(symbol: "??", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }

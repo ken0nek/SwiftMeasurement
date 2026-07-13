@@ -25,6 +25,6 @@ struct UnitDispersionIdentifierTests {
 
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitDispersion.unit(forIdentifier: "no-such-unit") == nil)
-        #expect(UnitDispersion(symbol: "??").unitIdentifier == nil)
+        #expect(UnitDispersion(symbol: "??", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }

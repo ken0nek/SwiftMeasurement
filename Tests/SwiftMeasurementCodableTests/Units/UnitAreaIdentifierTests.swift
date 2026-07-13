@@ -33,6 +33,6 @@ struct UnitAreaIdentifierTests {
 
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitArea.unit(forIdentifier: "no-such-unit") == nil)
-        #expect(UnitArea(symbol: "??").unitIdentifier == nil)
+        #expect(UnitArea(symbol: "??", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }

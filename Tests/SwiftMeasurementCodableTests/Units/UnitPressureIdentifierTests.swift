@@ -33,6 +33,6 @@ struct UnitPressureIdentifierTests {
 
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitPressure.unit(forIdentifier: "no-such-unit") == nil)
-        #expect(UnitPressure(symbol: "??").unitIdentifier == nil)
+        #expect(UnitPressure(symbol: "??", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }

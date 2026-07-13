@@ -40,6 +40,6 @@ struct UnitMassIdentifierTests {
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitMass.unit(forIdentifier: "parsec") == nil)
         #expect(UnitMass.unit(forIdentifier: "") == nil)
-        #expect(UnitMass(symbol: "zz").unitIdentifier == nil)
+        #expect(UnitMass(symbol: "zz", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }

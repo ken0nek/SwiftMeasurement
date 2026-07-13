@@ -28,6 +28,6 @@ struct UnitSpeedIdentifierTests {
 
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitSpeed.unit(forIdentifier: "no-such-unit") == nil)
-        #expect(UnitSpeed(symbol: "??").unitIdentifier == nil)
+        #expect(UnitSpeed(symbol: "??", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }

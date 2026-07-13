@@ -49,6 +49,6 @@ struct UnitVolumeIdentifierTests {
 
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitVolume.unit(forIdentifier: "no-such-unit") == nil)
-        #expect(UnitVolume(symbol: "??").unitIdentifier == nil)
+        #expect(UnitVolume(symbol: "??", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }

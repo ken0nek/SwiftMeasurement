@@ -25,6 +25,6 @@ struct UnitElectricResistanceIdentifierTests {
 
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitElectricResistance.unit(forIdentifier: "no-such-unit") == nil)
-        #expect(UnitElectricResistance(symbol: "??").unitIdentifier == nil)
+        #expect(UnitElectricResistance(symbol: "??", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }

@@ -25,6 +25,6 @@ struct UnitElectricPotentialDifferenceIdentifierTests {
 
     @Test func unknownIdentifierReturnsNil() {
         #expect(UnitElectricPotentialDifference.unit(forIdentifier: "no-such-unit") == nil)
-        #expect(UnitElectricPotentialDifference(symbol: "??").unitIdentifier == nil)
+        #expect(UnitElectricPotentialDifference(symbol: "??", converter: UnitConverterLinear(coefficient: 1)).unitIdentifier == nil)
     }
 }
