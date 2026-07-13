@@ -20,6 +20,13 @@ let package = Package(
                 "SwiftMeasurement",
             ]
         ),
+
+        .library(
+            name: "SwiftMeasurementCodable",
+            targets: [
+                "SwiftMeasurementCodable",
+            ]
+        ),
     ],
 
     targets: [
@@ -27,10 +34,21 @@ let package = Package(
             name: "SwiftMeasurement"
         ),
 
+        .target(
+            name: "SwiftMeasurementCodable"
+        ),
+
         .testTarget(
             name: "SwiftMeasurementTests",
             dependencies: [
                 "SwiftMeasurement",
+            ]
+        ),
+
+        .testTarget(
+            name: "SwiftMeasurementCodableTests",
+            dependencies: [
+                "SwiftMeasurementCodable",
             ]
         ),
     ],
