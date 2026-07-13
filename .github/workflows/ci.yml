@@ -27,3 +27,26 @@ jobs:
 
       - name: Run tests
         run: swift test
+
+      # --- SwiftMeasurementCodable: explicit verification of the standalone product ---
+      # The steps above already compile and test the whole package (including this
+      # target) on both macOS and Linux. The steps below make the module's guarantees
+      # explicit, named, and durable — so a future change to the package-wide steps
+      # can't silently drop coverage of the Codable product.
+      - name: Verify SwiftMeasurementCodable is Foundation-only
+        run: |
+          bad=$(grep -rhE '^[[:space:]]*import ' Sources/SwiftMeasurementCodable | grep -vE '^[[:space:]]*import Foundation[[:space:]]*$' || true)
+          if [ -n "$bad" ]; then
+            echo "::error::SwiftMeasurementCodable must import only Foundation — it is a standalone product and must not depend on the SwiftMeasurement target. Found:"
+            echo "$bad"
+            exit 1
+          fi
+
+      - name: Build SwiftMeasurementCodable product (Debug)
+        run: swift build --product SwiftMeasurementCodable
+
+      - name: Build SwiftMeasurementCodable product (Release)
+        run: swift build --product SwiftMeasurementCodable -c release
+
+      - name: Test SwiftMeasurementCodable
+        run: swift test --filter SwiftMeasurementCodableTests
