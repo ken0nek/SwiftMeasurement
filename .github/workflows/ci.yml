@@ -27,3 +27,31 @@ jobs:
 
       - name: Run tests
         run: swift test
+
+      # --- SwiftMeasurementCodable: explicit verification of the standalone target ---
+      # The steps above already compile and test the whole package (including this
+      # target) on both macOS and Linux. The steps below make the module's guarantees
+      # explicit, named, and durable — so a future change to the package-wide steps
+      # can't silently drop coverage of the Codable module.
+      - name: Verify SwiftMeasurementCodable does not depend on SwiftMeasurement
+        run: |
+          # The module must stay standalone: it may import Foundation and platform
+          # modules (Glibc/Darwin), but never the SwiftMeasurement target. Match a real
+          # import of that module — including @testable / @_implementationOnly / scoped
+          # forms — without tripping on `SwiftMeasurementCodable`, comments, Foundation
+          # submodules, or system modules.
+          bad=$(grep -rnE '^[[:space:]]*(@[[:alnum:]_]+[[:space:]]+)?import([[:space:]]+[[:lower:]]+)?[[:space:]]+SwiftMeasurement([[:space:]]|\.|$)' Sources/SwiftMeasurementCodable || true)
+          if [ -n "$bad" ]; then
+            echo "::error::SwiftMeasurementCodable must not import the SwiftMeasurement target — it is a standalone product. Found:"
+            echo "$bad"
+            exit 1
+          fi
+
+      - name: Build SwiftMeasurementCodable target (Debug)
+        run: swift build --target SwiftMeasurementCodable
+
+      - name: Build SwiftMeasurementCodable target (Release)
+        run: swift build --target SwiftMeasurementCodable -c release
+
+      - name: Test SwiftMeasurementCodable
+        run: swift test --filter SwiftMeasurementCodableTests

@@ -70,6 +70,55 @@ Typed accessors (`.asLength`, `.asArea`, `.asSpeed`, `.asEnergy`, etc.) convert 
 
 </details>
 
+## SwiftMeasurementCodable
+
+A standalone product (no dependency on the `SwiftMeasurement` module) that encodes and decodes `Measurement` values as stable, portable JSON:
+
+```json
+{"value": 21.5, "unit": "gram"}
+```
+
+`unit` is a [CLDR core unit identifier](https://www.unicode.org/reports/tr35/tr35-general.html#Unit_Elements) (CLDR 48.2) — the same vocabulary JavaScript's [`Intl.NumberFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#unit) accepts, so payloads stay locale-neutral and readable from any ecosystem. Foundation's built-in `Measurement` Codable shape (display symbols plus converter internals) is neither.
+
+```swift
+import Foundation
+import SwiftMeasurementCodable
+
+struct Recipe: Codable {
+    var flour: CodableMeasurement<UnitMass>
+    var oven: CodableMeasurement<UnitTemperature>
+}
+
+let recipe = Recipe(
+    flour: Measurement(value: 500, unit: .grams).codable,
+    oven: Measurement(value: 220, unit: .celsius).codable
+)
+let encoder = JSONEncoder()
+encoder.outputFormatting = [.sortedKeys]   // stable key order on every platform
+let data = try encoder.encode(recipe)
+// {"flour":{"unit":"gram","value":500},"oven":{"unit":"celsius","value":220}}
+
+let decoded = try JSONDecoder().decode(Recipe.self, from: data)
+decoded.flour.measurement.converted(to: .ounces)
+```
+
+Add the product to your target:
+
+```swift
+.product(name: "SwiftMeasurementCodable", package: "SwiftMeasurement")
+```
+
+**Strict or lenient.** `CodableMeasurement` throws `DecodingError` on an unrecognized identifier. When your policy is "an unrecognized unit means the value is absent", decode `RawMeasurement` instead — it always succeeds, and typed access is failable:
+
+```swift
+let raw = try JSONDecoder().decode(RawMeasurement.self, from: json)
+let mass: Measurement<UnitMass>? = raw.measurement(as: UnitMass.self)
+```
+
+**Mapping primitives.** The `UnitIdentifierRepresentable` protocol exposes both directions for custom wire shapes — `UnitMass.grams.unitIdentifier == "gram"` and `UnitMass.unit(forIdentifier: "ounce") == .ounces` — and lets you conform your own `Dimension` subclasses (see the protocol's documentation for the recipe).
+
+Notes: encoding emits the measurement's current unit as-is (convert first to control the wire unit); all 22 Foundation `Dimension` types are covered for every constant with a regular CLDR 48.2 identifier; a few identifiers (e.g. `bar`) are valid CLDR but outside the smaller [ECMA-402 sanctioned subset](https://tc39.es/ecma402/#table-sanctioned-single-unit-identifiers) that `Intl.NumberFormat` formats.
+
 ## Installation
 
 **Xcode:** File > Add Package Dependencies > enter `https://github.com/ken0nek/SwiftMeasurement.git`
