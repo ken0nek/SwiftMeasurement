@@ -34,10 +34,10 @@ import Foundation
 ///
 /// The trailing `as? Self` cast is required because Foundation's unit classes are
 /// non-final; for a subclass of the conforming class the cast fails and the lookup
-/// correctly returns `nil`. Note that `Unit` equality is symbol-based, so a custom
-/// unit constructed with a colliding symbol (`UnitMass(symbol: "g")`) matches the
-/// standard constant's switch case even if its converter differs — symbol
-/// collisions are the consumer's responsibility to avoid.
+/// correctly returns `nil`. Note that Foundation compares `Dimension` units by both
+/// symbol and converter, so a custom unit matches a standard constant's `switch` case
+/// only when both its symbol and its converter are identical to that constant's; a
+/// unit with a standard symbol but a different converter falls through to `nil`.
 public protocol UnitIdentifierRepresentable: Dimension {
     /// The CLDR core unit identifier for this unit (e.g. `"gram"`),
     /// or `nil` if this unit has no CLDR identifier.

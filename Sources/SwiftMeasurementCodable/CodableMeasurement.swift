@@ -6,6 +6,11 @@ import Foundation
 /// canonicalization. Convert first (`measurement.converted(to:)`) to control the unit
 /// on the wire. Decoding an identifier the unit type does not recognize throws
 /// `DecodingError`; for a lenient alternative see `RawMeasurement`.
+///
+/// `Equatable` compares the wrapped `Measurement` *dimensionally* (as `Measurement`
+/// does), so two wrappers with equal magnitude but different units — e.g. 1 kg and
+/// 1000 g — are `==` even though they encode to different JSON. If you need equality
+/// that mirrors the wire bytes, compare `measurement.value` and `measurement.unit`.
 public struct CodableMeasurement<UnitType: UnitIdentifierRepresentable>: Equatable, Sendable {
     /// The wrapped measurement.
     public var measurement: Measurement<UnitType>
@@ -37,7 +42,9 @@ extension CodableMeasurement: Codable {
         self.init(Measurement(value: value, unit: unit))
     }
 
-    /// Encodes `{"value", "unit"}`; throws `EncodingError` if the current unit has no identifier.
+    /// Encodes `{"value", "unit"}`. Throws `EncodingError` if the current unit has no
+    /// identifier, or — under `JSONEncoder`'s default non-conforming-float strategy — if
+    /// the value is non-finite (NaN or infinity).
     public func encode(to encoder: any Encoder) throws {
         guard let identifier = measurement.unit.unitIdentifier else {
             throw EncodingError.invalidValue(

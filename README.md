@@ -81,6 +81,7 @@ A standalone product (no dependency on the `SwiftMeasurement` module) that encod
 `unit` is a [CLDR core unit identifier](https://www.unicode.org/reports/tr35/tr35-general.html#Unit_Elements) (CLDR 48.2) — the same vocabulary JavaScript's [`Intl.NumberFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#unit) accepts, so payloads stay locale-neutral and readable from any ecosystem. Foundation's built-in `Measurement` Codable shape (display symbols plus converter internals) is neither.
 
 ```swift
+import Foundation
 import SwiftMeasurementCodable
 
 struct Recipe: Codable {
