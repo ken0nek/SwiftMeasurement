@@ -4,11 +4,7 @@ import SwiftMeasurementCodable
 
 @Suite("CodableMeasurement")
 struct CodableMeasurementTests {
-    private var sortedKeysEncoder: JSONEncoder {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = [.sortedKeys]
-        return encoder
-    }
+    private var sortedKeysEncoder: JSONEncoder { .sortedKeysForTests }
 
     @Test func encodesExactWireBytes() throws {
         let wrapped = Measurement(value: 21.5, unit: UnitMass.grams).codable

@@ -21,8 +21,7 @@ struct RawMeasurementTests {
     }
 
     @Test func encodesUnderUnitKey() throws {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = [.sortedKeys]
+        let encoder = JSONEncoder.sortedKeysForTests
         let data = try encoder.encode(RawMeasurement(value: 9.5, unitIdentifier: "smidgen"))
         #expect(String(decoding: data, as: UTF8.self) == #"{"unit":"smidgen","value":9.5}"#)
     }
