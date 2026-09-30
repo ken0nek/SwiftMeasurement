@@ -39,8 +39,8 @@ struct DimensionalUnitTests {
         #expect(UnitIlluminance.dimensions == DimensionalExponents(length: -2, luminosity: 1))
 
         // Dimensionless and special
-        #expect(UnitAngle.dimensions == DimensionalExponents())
-        #expect(UnitInformationStorage.dimensions == DimensionalExponents())
-        #expect(UnitFuelEfficiency.dimensions == DimensionalExponents(length: -2))
+        #expect(UnitAngle.dimensions == DimensionalExponents(angle: 1))
+        #expect(UnitInformationStorage.dimensions == DimensionalExponents(information: 1))
+        #expect(UnitFuelEfficiency.dimensions == DimensionalExponents(length: 2))
     }
 }

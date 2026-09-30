@@ -120,7 +120,7 @@ struct DimensionalMeasurementTests {
             let time = Measurement(value: 2.5, unit: UnitDuration.hours)
 
             // Test multiplication
-            let distance = speed * time
+            let distance: DimensionalMeasurement = speed * time
 
             #expect(distance.dimensions == UnitLength.dimensions)
 
@@ -484,6 +484,14 @@ struct DimensionalMeasurementTests {
     @Suite("Edge Cases")
     struct EdgeCaseTests {
 
+        @Test("Square root halves pseudo-dimensions")
+        func squareRootHalvesPseudoDimensions() {
+            let angleSquared = DimensionalMeasurement(value: 4.0, dimensions: DimensionalExponents(angle: 2))
+            #expect(angleSquared.squareRoot()?.dimensions == DimensionalExponents(angle: 1))
+            let oddInformation = DimensionalMeasurement(value: 4.0, dimensions: DimensionalExponents(information: 1))
+            #expect(oddInformation.squareRoot() == nil)
+        }
+
         @Test("Division by zero produces infinity")
         func divisionByZero() {
             let length = DimensionalMeasurement(value: 10.0, dimensions: DimensionalExponents(length: 1))
@@ -491,6 +499,19 @@ struct DimensionalMeasurementTests {
 
             let result = length / zero
             #expect(result.value.isInfinite)
+        }
+
+        @Test("Infinity equals only the same infinity")
+        func infinityEquality() {
+            let dimensions = DimensionalExponents(length: 1)
+            let positive = DimensionalMeasurement(value: .infinity, dimensions: dimensions)
+            let negative = DimensionalMeasurement(value: -.infinity, dimensions: dimensions)
+            let finite = DimensionalMeasurement(value: 10.0, dimensions: dimensions)
+
+            #expect(positive == positive)
+            #expect(positive != finite)
+            #expect(finite != positive)
+            #expect(positive != negative)
         }
 
         @Test("Very large values")

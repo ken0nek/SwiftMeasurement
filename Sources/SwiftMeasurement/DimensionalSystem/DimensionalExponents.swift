@@ -10,6 +10,9 @@ public struct DimensionalExponents: Equatable, Hashable, CustomStringConvertible
     public let temperature: Int  // Θ (kelvin)
     public let amount: Int       // N (mole)
     public let luminosity: Int   // J (candela)
+    // Dimensionless in SI, tracked separately so angles and data sizes don't mix with plain ratios
+    public let angle: Int        // radian
+    public let information: Int  // bit
 
     public init(
         length: Int = 0,
@@ -18,7 +21,9 @@ public struct DimensionalExponents: Equatable, Hashable, CustomStringConvertible
         current: Int = 0,
         temperature: Int = 0,
         amount: Int = 0,
-        luminosity: Int = 0
+        luminosity: Int = 0,
+        angle: Int = 0,
+        information: Int = 0
     ) {
         self.length = length
         self.time = time
@@ -27,6 +32,8 @@ public struct DimensionalExponents: Equatable, Hashable, CustomStringConvertible
         self.temperature = temperature
         self.amount = amount
         self.luminosity = luminosity
+        self.angle = angle
+        self.information = information
     }
 
     // Add dimensions
@@ -38,7 +45,9 @@ public struct DimensionalExponents: Equatable, Hashable, CustomStringConvertible
             current: lhs.current + rhs.current,
             temperature: lhs.temperature + rhs.temperature,
             amount: lhs.amount + rhs.amount,
-            luminosity: lhs.luminosity + rhs.luminosity
+            luminosity: lhs.luminosity + rhs.luminosity,
+            angle: lhs.angle + rhs.angle,
+            information: lhs.information + rhs.information
         )
     }
 
@@ -51,7 +60,9 @@ public struct DimensionalExponents: Equatable, Hashable, CustomStringConvertible
             current: lhs.current - rhs.current,
             temperature: lhs.temperature - rhs.temperature,
             amount: lhs.amount - rhs.amount,
-            luminosity: lhs.luminosity - rhs.luminosity
+            luminosity: lhs.luminosity - rhs.luminosity,
+            angle: lhs.angle - rhs.angle,
+            information: lhs.information - rhs.information
         )
     }
 
@@ -64,14 +75,16 @@ public struct DimensionalExponents: Equatable, Hashable, CustomStringConvertible
             current: lhs.current * rhs,
             temperature: lhs.temperature * rhs,
             amount: lhs.amount * rhs,
-            luminosity: lhs.luminosity * rhs
+            luminosity: lhs.luminosity * rhs,
+            angle: lhs.angle * rhs,
+            information: lhs.information * rhs
         )
     }
 
     // Check if dimensions are dimensionless
     public var isDimensionless: Bool {
         return length == 0 && time == 0 && mass == 0 && current == 0 &&
-               temperature == 0 && amount == 0 && luminosity == 0
+               temperature == 0 && amount == 0 && luminosity == 0 && angle == 0 && information == 0
     }
 
     // String representation
@@ -85,18 +98,22 @@ public struct DimensionalExponents: Equatable, Hashable, CustomStringConvertible
         if temperature != 0 { components.append("Θ^\(temperature)") }
         if amount != 0 { components.append("N^\(amount)") }
         if luminosity != 0 { components.append("J^\(luminosity)") }
+        if angle != 0 { components.append("rad^\(angle)") }
+        if information != 0 { components.append("bit^\(information)") }
 
         return components.isEmpty ? "dimensionless" : components.joined(separator: "·")
     }
 
     // Debug representation
     public var debugDescription: String {
-        return "DimensionalExponents(length: \(length), time: \(time), mass: \(mass), current: \(current), temperature: \(temperature), amount: \(amount), luminosity: \(luminosity))"
+        return "DimensionalExponents(length: \(length), time: \(time), mass: \(mass), current: \(current), temperature: \(temperature), amount: \(amount), luminosity: \(luminosity), angle: \(angle), information: \(information))"
     }
 
     // MARK: - Named Dimension Presets
 
     public static let dimensionless = DimensionalExponents()
+    public static let angle = DimensionalExponents(angle: 1)
+    public static let information = DimensionalExponents(information: 1)
     public static let length = DimensionalExponents(length: 1)
     public static let area = DimensionalExponents(length: 2)
     public static let volume = DimensionalExponents(length: 3)
