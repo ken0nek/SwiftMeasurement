@@ -146,7 +146,7 @@ probe("UnitFrequency.nanohertz", UnitFrequency.nanohertz, UnitFrequency.nanohert
 #if canImport(Darwin) || compiler(>=6.4)
 probe("UnitFrequency.framesPerSecond", UnitFrequency.framesPerSecond, UnitFrequency.framesPerSecond)
 #endif
-probeType("UnitFrequency", UnitFrequency.self, UnitFrequency.terahertz, UnitFrequency.framesPerSecond)
+probeType("UnitFrequency", UnitFrequency.self, UnitFrequency.terahertz, UnitFrequency.nanohertz)
 probe("UnitFuelEfficiency.litersPer100Kilometers", UnitFuelEfficiency.litersPer100Kilometers, UnitFuelEfficiency.litersPer100Kilometers)
 probe("UnitFuelEfficiency.milesPerImperialGallon", UnitFuelEfficiency.milesPerImperialGallon, UnitFuelEfficiency.milesPerImperialGallon)
 probe("UnitFuelEfficiency.milesPerGallon", UnitFuelEfficiency.milesPerGallon, UnitFuelEfficiency.milesPerGallon)
