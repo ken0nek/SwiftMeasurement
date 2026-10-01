@@ -133,6 +133,7 @@ public struct DimensionalMeasurement: Equatable, Hashable, CustomStringConvertib
             return nil
         }
         // Not `converted(to:)` from the base unit: on Linux, L/100km has a reciprocal converter and inverts the value
+        // (swiftlang/swift-corelibs-foundation#5586). Removable once every supported Linux toolchain ships that fix.
         return Measurement(value: unit.converter.value(fromBaseUnitValue: value / T.coherentScale), unit: unit)
     }
 
