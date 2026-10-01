@@ -144,7 +144,7 @@ Notes: encoding emits the measurement's current unit as-is (convert first to con
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/ken0nek/SwiftMeasurement.git", from: "2.3.0")
+    .package(url: "https://github.com/ken0nek/SwiftMeasurement.git", from: "3.0.0")
 ]
 ```
 
