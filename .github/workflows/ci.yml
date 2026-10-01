@@ -33,6 +33,14 @@ jobs:
       - name: Run tests
         run: swift test
 
+      - name: Verify generated typed operators are current
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          swift run GenerateTypedAlgebra
+          git diff --exit-code -- \
+            Sources/SwiftMeasurement/DimensionalSystem/TypedAlgebra.generated.swift \
+            Tests/SwiftMeasurementTests/DimensionalSystem/TypedAlgebra.generated.swift
+
       # --- SwiftMeasurementCodable: explicit verification of the standalone target ---
       # The steps above already compile and test the whole package (including this
       # target) on both macOS and Linux. The steps below make the module's guarantees

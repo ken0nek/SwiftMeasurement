@@ -24,19 +24,27 @@ Works with `Int`, `Double`, and `Float` across all 22 Foundation unit types.
 `DimensionalMeasurement` tracks SI dimension exponents automatically, so you can multiply, divide, and root physical quantities across different unit types.
 
 ```swift
-// Speed × Time = Distance
-let distance = 60.0.kilometersPerHour * 2.hours
-distance.convert(to: UnitLength.kilometers)  // 120.0 km
+// Speed × Time = Distance — a typed Measurement<UnitLength>
+let distance = 60.kilometersPerHour * 2.hours
+distance.converted(to: .kilometers)  // 120.0 km
 
 // Length × Length = Area
-let area = 10.0.meters * 5.0.meters
-area.convert(to: UnitArea.squareMeters)  // 50.0 m²
+let area = 10.meters * 5.meters      // Measurement<UnitArea>
+area.converted(to: .squareMeters)    // 50.0 m²
+
+// Anything without a typed result stays a DimensionalMeasurement
+let kineticEnergy = 0.5 * DimensionalMeasurement(2.kilograms) * DimensionalMeasurement(10.metersPerSecond).power(2)
+kineticEnergy.asEnergy               // 100.0 J
 
 // Square root
-area.squareRoot()?.asLength  // back to meters
+area.dimensionalMeasurement.squareRoot()?.asLength  // ≈ 7.07 m
 ```
 
 Typed accessors (`.asLength`, `.asArea`, `.asSpeed`, `.asEnergy`, etc.) convert back to `Measurement<T>` — returns `nil` if the dimensions don't match.
+
+Every product or quotient of two unit types that lands on a third one (60 in all, such as `Speed × Duration`, `Voltage × Current`, and `Energy ÷ Duration`) has a typed operator that returns that `Measurement` directly. `Frequency × Duration` returns a plain `Double`. Annotate `let x: DimensionalMeasurement = a * b` to get the dimensional value instead.
+
+Values are computed in coherent SI units. Angles and information storage are tracked as their own dimensions, so they never convert into other dimensionless quantities.
 
 ## Supported Units
 
@@ -119,6 +127,15 @@ let mass: Measurement<UnitMass>? = raw.measurement(as: UnitMass.self)
 
 Notes: encoding emits the measurement's current unit as-is (convert first to control the wire unit); all 22 Foundation `Dimension` types are covered for every constant with a regular CLDR 48.2 identifier; a few identifiers (e.g. `bar`) are valid CLDR but outside the smaller [ECMA-402 sanctioned subset](https://tc39.es/ecma402/#table-sanctioned-single-unit-identifiers) that `Intl.NumberFormat` formats.
 
+## Migrating to 3.0
+
+- `DimensionalMeasurement` now computes in coherent SI units. Earlier versions used Foundation's base units, which are not SI for volume (liter), fuel efficiency (L/100km), angle (degree), dispersion (ppm) and, on Darwin, information storage (byte), so results involving those types change: `1 m × 1 m × 1 m` is now 1 m³, not 1 L.
+- `DimensionalExponents` gains `angle` and `information`, which also appear in its `description` (`rad^n`, `bit^n`) and `debugDescription`. `UnitFuelEfficiency` is now L² (volume per length).
+- `DimensionalUnit` requires `static var coherentScale: Double`, the SI value of one `baseUnit()`. Add it to your own conformances.
+- `DimensionalMeasurement` equality is now relative (within 1e-10 of the larger magnitude) instead of absolute, so small SI values such as fuel efficiency compare correctly. Its hash covers only the dimensions.
+- A product or quotient with a typed result is now a `Measurement` of that type, expressed in the result type's base unit. A dimensionless result, such as `Frequency × Duration`, is a plain `Double`. Annotate `DimensionalMeasurement` where you need the dimensional value.
+- `Measurement` no longer conforms to `ExpressibleByIntegerLiteral` or `ExpressibleByFloatLiteral`. Write `3.5.meters` instead of `let d: Measurement<UnitLength> = 3.5`.
+
 ## Installation
 
 **Xcode:** File > Add Package Dependencies > enter `https://github.com/ken0nek/SwiftMeasurement.git`
@@ -127,7 +144,7 @@ Notes: encoding emits the measurement's current unit as-is (convert first to con
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/ken0nek/SwiftMeasurement.git", from: "2.3.0")
+    .package(url: "https://github.com/ken0nek/SwiftMeasurement.git", from: "3.0.0")
 ]
 ```
 

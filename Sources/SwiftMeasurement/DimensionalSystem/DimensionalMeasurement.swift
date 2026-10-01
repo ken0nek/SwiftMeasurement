@@ -2,13 +2,13 @@ import Foundation
 
 /// A type-erased measurement that can be converted to a specific unit type
 public struct DimensionalMeasurement: Equatable, Hashable, CustomStringConvertible, CustomDebugStringConvertible, Sendable {
-    /// The value of the quantity in base units
+    /// The value of the quantity in coherent SI units
     public let value: Double
 
     /// The dimensional signature of the quantity
     public let dimensions: DimensionalExponents
 
-    /// Tolerance for floating-point comparison in == and hash(into:)
+    /// Relative tolerance for floating-point comparison in ==; exact zero equals only zero
     private static let epsilon: Double = 1e-10
 
     /// Initialize with a value and dimension exponents
@@ -19,7 +19,7 @@ public struct DimensionalMeasurement: Equatable, Hashable, CustomStringConvertib
 
     /// Create from a Foundation Measurement
     public init<UnitType: Dimension & DimensionalUnit>(_ measurement: Measurement<UnitType>) {
-        self.value = measurement.converted(to: UnitType.baseUnit()).value
+        self.value = measurement.converted(to: UnitType.baseUnit()).value * UnitType.coherentScale
         self.dimensions = UnitType.dimensions
     }
 
@@ -98,7 +98,9 @@ public struct DimensionalMeasurement: Equatable, Hashable, CustomStringConvertib
             current: dimensions.current / 2,
             temperature: dimensions.temperature / 2,
             amount: dimensions.amount / 2,
-            luminosity: dimensions.luminosity / 2
+            luminosity: dimensions.luminosity / 2,
+            angle: dimensions.angle / 2,
+            information: dimensions.information / 2
         )
 
         // Verify that we don't have fractional exponents
@@ -121,7 +123,7 @@ public struct DimensionalMeasurement: Equatable, Hashable, CustomStringConvertib
             return nil
         }
 
-        return Measurement(value: value, unit: T.baseUnit())
+        return Measurement(value: value / T.coherentScale, unit: T.baseUnit())
     }
 
     /// Convert directly to a specific unit (e.g., `.kilometers`).
@@ -130,7 +132,9 @@ public struct DimensionalMeasurement: Equatable, Hashable, CustomStringConvertib
         guard T.dimensions == dimensions else {
             return nil
         }
-        return Measurement(value: value, unit: T.baseUnit()).converted(to: unit)
+        // Not `converted(to:)` from the base unit: on Linux, L/100km has a reciprocal converter and inverts the value
+        // (swiftlang/swift-corelibs-foundation#5586). Removable once every supported Linux toolchain ships that fix.
+        return Measurement(value: unit.converter.value(fromBaseUnitValue: value / T.coherentScale), unit: unit)
     }
 
     /// Create dimensionless quantity (scalar)
@@ -146,16 +150,18 @@ public struct DimensionalMeasurement: Equatable, Hashable, CustomStringConvertib
             return false
         }
 
-        // Then check if values are equal (using some epsilon for floating point comparison)
-        return abs(lhs.value - rhs.value) < Self.epsilon
+        // The relative bound is itself infinite for an infinite operand, so compare those exactly
+        guard lhs.value.isFinite && rhs.value.isFinite else {
+            return lhs.value == rhs.value
+        }
+
+        return abs(lhs.value - rhs.value) <= Self.epsilon * max(abs(lhs.value), abs(rhs.value))
     }
 
     // MARK: - Hashable Protocol Implementation
 
     public func hash(into hasher: inout Hasher) {
-        // Round to match the epsilon used in == so that
-        // a == b always implies a.hashValue == b.hashValue.
-        hasher.combine((value / Self.epsilon).rounded())
+        // A relative tolerance cannot be bucketed, so only dimensions keep a == b ⇒ equal hashes.
         hasher.combine(dimensions)
     }
 

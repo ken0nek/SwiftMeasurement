@@ -79,7 +79,26 @@ struct DimensionalExponentsTests {
     @Test("Debug Description")
     func debugDescription() {
         let energy = DimensionalExponents(length: 2, time: -2, mass: 1)
-        #expect(energy.debugDescription == "DimensionalExponents(length: 2, time: -2, mass: 1, current: 0, temperature: 0, amount: 0, luminosity: 0)")
+        #expect(energy.debugDescription == "DimensionalExponents(length: 2, time: -2, mass: 1, current: 0, temperature: 0, amount: 0, luminosity: 0, angle: 0, information: 0)")
+    }
+
+    @Test("Pseudo-dimensions take part in arithmetic")
+    func pseudoDimensionArithmetic() {
+        let angularSpeed = DimensionalExponents(time: -1, angle: 1)
+        let sum = angularSpeed + DimensionalExponents(information: 2)
+        #expect(sum.angle == 1)
+        #expect(sum.information == 2)
+        #expect((sum - sum).isDimensionless)
+        #expect((angularSpeed * 3).angle == 3)
+        #expect(!DimensionalExponents(angle: 1).isDimensionless)
+        #expect(!DimensionalExponents(information: 1).isDimensionless)
+        #expect(DimensionalExponents(angle: 1) != DimensionalExponents(information: 1))
+    }
+
+    @Test("Pseudo-dimensions render after SI dimensions")
+    func pseudoDimensionDescription() {
+        #expect(DimensionalExponents(time: -1, angle: 1).description == "T^-1·rad^1")
+        #expect(DimensionalExponents(information: 1).description == "bit^1")
     }
 
     @Test("Properties are immutable")
@@ -189,6 +208,18 @@ struct DimensionalExponentsTests {
         @Test("Concentration mass preset matches UnitConcentrationMass")
         func concentrationMassPreset() {
             #expect(DimensionalExponents.concentrationMass == UnitConcentrationMass.dimensions)
+        }
+
+        @Test("Angle and information presets")
+        func pseudoDimensionPresets() {
+            #expect(DimensionalExponents.angle == DimensionalExponents(angle: 1))
+            #expect(DimensionalExponents.information == DimensionalExponents(information: 1))
+        }
+
+        @Test("Angle and information presets match their unit types")
+        func pseudoDimensionPresetsMatchUnits() {
+            #expect(DimensionalExponents.angle == UnitAngle.dimensions)
+            #expect(DimensionalExponents.information == UnitInformationStorage.dimensions)
         }
     }
 }

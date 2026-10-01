@@ -38,6 +38,13 @@ let package = Package(
             name: "SwiftMeasurementCodable"
         ),
 
+        .executableTarget(
+            name: "GenerateTypedAlgebra",
+            dependencies: [
+                "SwiftMeasurement",
+            ]
+        ),
+
         .testTarget(
             name: "SwiftMeasurementTests",
             dependencies: [
