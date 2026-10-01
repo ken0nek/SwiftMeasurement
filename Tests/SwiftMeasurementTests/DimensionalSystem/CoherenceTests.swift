@@ -71,7 +71,7 @@ struct CoherenceTests {
         #expect(isClose(DimensionalMeasurement(30.degrees).asAngle!.converted(to: .degrees).value, 30))
         #expect(isClose(DimensionalMeasurement(5.bytes).asInformationStorage!.converted(to: .bytes).value, 5))
         #expect(isClose(DimensionalMeasurement(7.partsPerMillion).asDispersion!.converted(to: .partsPerMillion).value, 7))
-        #expect(isClose(DimensionalMeasurement(30.milesPerGallon).asFuelEfficiency!.converted(to: .milesPerGallon).value, 30))
+        #expect(isClose(DimensionalMeasurement(30.milesPerGallon).convert(to: UnitFuelEfficiency.milesPerGallon)!.value, 30))
         #expect(isClose(DimensionalMeasurement(1.cubicMeters).convert(to: UnitVolume.liters)!.value, 1000))
     }
 

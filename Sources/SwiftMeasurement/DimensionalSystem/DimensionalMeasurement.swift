@@ -132,7 +132,8 @@ public struct DimensionalMeasurement: Equatable, Hashable, CustomStringConvertib
         guard T.dimensions == dimensions else {
             return nil
         }
-        return Measurement(value: value / T.coherentScale, unit: T.baseUnit()).converted(to: unit)
+        // Not `converted(to:)` from the base unit: on Linux, L/100km has a reciprocal converter and inverts the value
+        return Measurement(value: unit.converter.value(fromBaseUnitValue: value / T.coherentScale), unit: unit)
     }
 
     /// Create dimensionless quantity (scalar)
