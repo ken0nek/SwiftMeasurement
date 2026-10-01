@@ -136,6 +136,15 @@ Notes: encoding emits the measurement's current unit as-is (convert first to con
 - A product or quotient with a typed result is now a `Measurement` of that type, expressed in the result type's base unit. A dimensionless result, such as `Frequency × Duration`, is a plain `Double`. Annotate `DimensionalMeasurement` where you need the dimensional value.
 - `Measurement` no longer conforms to `ExpressibleByIntegerLiteral` or `ExpressibleByFloatLiteral`. Write `3.5.meters` instead of `let d: Measurement<UnitLength> = 3.5`.
 
+## Upstream contributions
+
+SwiftMeasurement runs its tests on Linux as well as macOS, which has turned up gaps in Foundation's open-source implementation. The fixes go to swift-corelibs-foundation instead of staying as workarounds here.
+
+- [Add `UnitFrequency.framesPerSecond`](https://github.com/swiftlang/swift-corelibs-foundation/pull/5414), which was missing on Linux
+- [Use a linear converter for `UnitFuelEfficiency.litersPer100Kilometers`](https://github.com/swiftlang/swift-corelibs-foundation/pull/5586), which inverted the value when converting out of it on Linux
+- [Fix the inverted coefficient of `UnitMass.stones`](https://github.com/swiftlang/swift-corelibs-foundation/pull/5587), which converted 1 st to 0.157 kg instead of 6.35 kg on Linux
+- [Use exact coefficients for imperial and astronomical units](https://github.com/swiftlang/swift-corelibs-foundation/pull/5588), which were rounded on Linux, so 1 mi converted to 5279.987 ft
+
 ## Installation
 
 **Xcode:** File > Add Package Dependencies > enter `https://github.com/ken0nek/SwiftMeasurement.git`
