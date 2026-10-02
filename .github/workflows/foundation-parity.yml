@@ -1,0 +1,78 @@
+name: Foundation parity probe
+
+# Runs Tools/FoundationParityProbe on macOS and on Linux toolchains, then diffs
+# the outputs. It reports differences; it never fails on them.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - Tools/FoundationParityProbe/**
+      - .github/workflows/foundation-parity.yml
+
+jobs:
+  probe:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: darwin
+            os: macos-latest
+          - name: linux-6.0
+            os: ubuntu-latest
+            container: swift:6.0
+          - name: linux-6.4
+            os: ubuntu-latest
+            container: swift:6.4
+          - name: linux-main
+            os: ubuntu-latest
+            container: swiftlang/swift:nightly-main-jammy
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build probe
+        run: swiftc -O -o probe Tools/FoundationParityProbe/main.swift
+
+      - name: Run probe
+        run: |
+          swift --version > version.txt 2>&1
+          # A trap is itself a finding: keep the partial output and record the exit code.
+          ./probe > "probe-${{ matrix.name }}.txt" 2> stderr.txt || echo "exit code $?" >> stderr.txt
+          cat stderr.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: probe-${{ matrix.name }}
+          path: |
+            probe-${{ matrix.name }}.txt
+            stderr.txt
+            version.txt
+
+  compare:
+    needs: probe
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: out
+
+      - name: Diff each Linux toolchain against Darwin
+        run: |
+          for linux in out/probe-linux-*; do
+            name=$(basename "$linux")
+            diff -u out/probe-darwin/probe-darwin.txt "$linux/$name.txt" > "$name.diff" || true
+            {
+              echo "## $name"
+              echo "$(grep -c '^+[^+]' "$name.diff") differing lines"
+              echo '```'
+              cat "$linux/stderr.txt"
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          done
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: diffs
+          path: "*.diff"
